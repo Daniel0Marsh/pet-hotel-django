@@ -37,7 +37,7 @@ class BrandingAdmin(SingletonAdmin):
             "fields": ("company_name", "company_email", "company_phone", "company_address"),
         }),
         ("Brand Assets", {
-            "fields": ("logo", "favicon"),
+            "fields": ("logo", "favicon", "video"),  # Added the video field here
         }),
         ("SEO Metadata", {
             "fields": ("meta_keywords", "meta_description"),
@@ -46,4 +46,5 @@ class BrandingAdmin(SingletonAdmin):
             "fields": ("twitter_link", "facebook_link", "instagram_link"),
         }),
     )
+
 
