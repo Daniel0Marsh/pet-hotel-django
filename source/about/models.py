@@ -7,7 +7,7 @@ class AboutPage(models.Model):
     # Hero Section
     hero_title = models.CharField(
         max_length=200,
-        default="A Luxury Retreat for Your Beloved Pets"
+        default="About Us"
     )
     hero_subheading = models.TextField(
         default="Where every paw is pampered and every whisker welcomed. Experience exceptional care in a serene, home-away-from-home setting."

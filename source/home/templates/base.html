@@ -38,7 +38,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #082027; z-index: 1000;">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="{{ branding.logo.url }}" alt="{{branding.company_name}}" height="40">
+                <img src="{{ branding.logo.url }}" alt="{{ branding.company_name }}" class="img-fluid" style="max-height: 60px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
             <div class="row justify-content-center text-center">
                 <!-- Logo -->
                 <div class="col-12 text-center mb-4">
-                    <img src="{{ branding.logo.url }}" alt="{{branding.company_name}}" height="50">
+                    <img src="{{ branding.logo.url }}" alt="{{ branding.company_name }}" class="img-fluid" style="max-height: 100px;">
                 </div>
 
                 <!-- Divider -->
@@ -111,13 +111,13 @@
                 <div class="col-md-3 text-center text-light mb-4">
                     <h5 class="mb-3">Location</h5>
                     <p class="text-light mb-2">{{branding.company_name}}</p>
-                    <p class="text-light mb-2">{{branding.address}}</p>
-                    <a href="mailto:{{branding.email}}" class="text-light text-decoration-none mb-2 d-block">
-                        <i class="bi bi-envelope-fill"></i> {{branding.email}}
+                    <p class="text-light mb-2">{{branding.company_address}}</p>
+                    <a href="mailto:{{branding.company_email}}" class="text-light text-decoration-none mb-2 d-block">
+                        <i class="bi bi-envelope-fill"></i> {{branding.company_email}}
                     </a>
                     <p>
-                        <a href="tel:{{branding.phone_number}}" class="text-light text-decoration-none">
-                            <i class="bi bi-telephone-fill"></i> {{branding.phone_number}}
+                        <a href="tel:{{branding.company_phone}}" class="text-light text-decoration-none">
+                            <i class="bi bi-telephone-fill"></i> {{branding.company_phone}}
                         </a>
                     </p>
                 </div>
