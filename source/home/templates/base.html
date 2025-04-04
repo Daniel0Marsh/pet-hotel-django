@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="keywords" content="{% block keywords %}{{branding.meta_keywords}}{% endblock %}">
+    <meta name="description" content="{% block desc %}{{branding.meta_description}}{% endblock %}">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_desc %}{% endblock %}">
+    <meta property="og:image" content="{{ branding.logo.url }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="website">
+
+    <title>{% block title %}{{branding.company_name}}{% endblock %}</title>
+
+    {% load static %}
+    <!-- Dynamically set the favicon and logo -->
+    <link rel="icon" type="image/x-icon" href="{{ branding.favicon.url }}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #082027; z-index: 1000;">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ branding.logo.url }}" alt="{{branding.company_name}}" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'services' %}">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'hotel' %}">Hotel</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meals' %}">Meals</a></li>
+                            <li><a class="dropdown-item" href="{% url 'training' %}">Pet Training</a></li>
+                            <li><a class="dropdown-item" href="{% url 'grooming' %}">Grooming</a></li>
+                            <li><a class="dropdown-item" href="{% url 'water_sports' %}">WaterSports</a></li>
+                            <li><a class="dropdown-item" href="{% url 'transportation' %}">Transportation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="text-light py-5 pt-5" style="background-color: #082027;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <!-- Logo -->
+                <div class="col-12 text-center mb-4">
+                    <img src="{{ branding.logo.url }}" alt="{{branding.company_name}}" height="50">
+                </div>
+
+                <!-- Divider -->
+                <div class="col-12 text-center text-light mb-4">
+                    <hr class="border-bottom border-2 border-white" style="width: 60%; margin: 0 auto;">
+                </div>
+
+                <!-- Company Links -->
+                <div class="col-md-3 text-center mb-3">
+                    <h5 class="mb-3">Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'contact' %}" class="text-light text-decoration-none">Contact</a></li>
+                        <li><a href="{% url 'about_us' %}" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="{% url 'privacy_policy' %}" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="{% url 'terms_of_service' %}" class="text-light text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services (Empty for now) -->
+                <div class="col-md-3 text-center mb-3">
+                    <h5 class="mb-3">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'hotel' %}" class="text-light text-decoration-none">Hotel</a></li>
+                        <li><a href="{% url 'meals' %}" class="text-light text-decoration-none">Meals</a></li>
+                        <li><a href="{% url 'training' %}" class="text-light text-decoration-none">Training</a></li>
+                        <li><a href="{% url 'grooming' %}" class="text-light text-decoration-none">Grooming</a></li>
+                        <li><a href="{% url 'water_sports' %}" class="text-light text-decoration-none">WaterSports</a></li>
+                        <li><a href="{% url 'transportation' %}" class="text-light text-decoration-none">Transportation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Location & Contact -->
+                <div class="col-md-3 text-center text-light mb-4">
+                    <h5 class="mb-3">Location</h5>
+                    <p class="text-light mb-2">{{branding.company_name}}</p>
+                    <p class="text-light mb-2">{{branding.address}}</p>
+                    <a href="mailto:{{branding.email}}" class="text-light text-decoration-none mb-2 d-block">
+                        <i class="bi bi-envelope-fill"></i> {{branding.email}}
+                    </a>
+                    <p>
+                        <a href="tel:{{branding.phone_number}}" class="text-light text-decoration-none">
+                            <i class="bi bi-telephone-fill"></i> {{branding.phone_number}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="text-center mt-4">
+                <a href="{{branding.twitter_link}}" class="text-light me-3 fs-4 text-decoration-none">
+                    <i class="bi bi-twitter"></i>
+                </a>
+                <a href="{{branding.facebook_link}}" class="text-light me-3 fs-4 text-decoration-none">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="{{branding.instagram_link}}" class="text-light fs-4 text-decoration-none">
+                    <i class="bi bi-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

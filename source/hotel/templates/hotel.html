@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{branding.company_name}} - Hotel Page{% endblock %}</title>
+    {% block extra_head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <!-- Bootstrap JS (with Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+</head>
+
+{% block content %}
+
+<body class="bg-light">
+
+    <!-- Hero Section -->
+    <section class="hero-section pb-5 bg-primary text-white text-center d-flex justify-content-center align-items-center"
+             style="background-image: url('{{ hotel.hero_image.url }}'); background-size: cover; background-position: center; position: relative;">
+        <div class="overlay d-flex justify-content-center align-items-center"
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+        <div class="container text-center" style="position: relative; z-index: 2;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <h1 class="display-3 display-sm-1 fw-bold text-center text-shadow-lg my-5">{{ hotel.hero_title }}</h1>
+                    <h4 class="mb-5">{{ hotel.hero_subheading }}</h4>
+                    <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">Book Your Pets Stay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Facilities Section -->
+    <section class="our-story-section py-5 text-light" style="background-color: #082027;">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text on the left -->
+                <div class="col-md-6">
+                    <h6>Our Facilities</h6>
+                    <h2 class="display-6 font-weight-bold mb-4">{{hotel.our_facilities_title}}</h2>
+                    <p class="lead mb-4">{{hotel.our_facilities_subheading}}</p>
+                </div>
+                <!-- Image on the right -->
+                <div class="col-md-6">
+                    <img src="{{ hotel.our_facilities_image.url }}" alt="Our Facilities" class="img-fluid rounded w-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="bg-light our-services-section py-5 text-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Image on the left -->
+                <div class="col-md-6 order-md-1">
+                    <img src="{{ hotel.our_services_image.url }}" alt="Our Service" class="img-fluid rounded w-100 mb-4">
+                </div>
+                <!-- Text on the right -->
+                <div class="col-md-6 order-md-2">
+                    <h6>Our Services</h6>
+                    <h2 class="display-6 font-weight-bold mb-4">{{ hotel.our_services_title }}</h2>
+                    <p class="lead mb-4">{{ hotel.our_services_subheading }}</p>
+                    <a href="{% url 'services' %}" class="btn btn-primary btn-lg">View All Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Our Prices Section -->
+<section class="our-prices-section py-5 text-light" style="background-color: #082027;">
+    <div class="container">
+        <h6 class="text-uppercase text-center">Rates</h6>
+        <h2 class="display-6 font-weight-bold mb-4 text-center">{{ hotel.our_prices_title }}</h2>
+        <p class="text-center mb-5 text-light lead">{{ hotel.our_prices_subheading }}</p>
+
+        <div class="row">
+            {% for room in room_prices %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-lg border-0">
+                    <div class="card-body text-center">
+                        <p class="text-muted small">{{ room.pet_type|capfirst }} accommodation</p>
+                        <h4 class="mb-3 text-dark">{{ room.pet_type|capfirst }} - {{ room.pet_size|capfirst }}</h4>
+
+                        {% if room.discounted_price %}
+                            <h5 class="text-muted">
+                                <del>${{ room.original_price|floatformat:2 }}</del>
+                            </h5>
+                            <h3 class="fw-bold text-primary mb-2">${{ room.discounted_price|floatformat:2 }}</h3>
+                            <p class="text-success small mb-0">Includes {{ discount.overall_discount }}% discount</p>
+                        {% else %}
+                            <h3 class="fw-bold text-primary mb-2">${{ room.original_price|floatformat:2 }}</h3>
+                        {% endif %}
+                        <p class="text-muted mb-0">Per night</p>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">No room prices available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if discount.multipet_discount > 0 %}
+        <div class="text-center mt-4">
+            <p class="text-info small">
+                Get an additional {{ discount.multipet_discount }}% off for each extra pet in the same booking!
+            </p>
+        </div>
+        {% endif %}
+
+        <!-- Book Now Section -->
+        <div class="text-center mt-5">
+            <a href="{% url 'select_dates' %}" class="btn btn-primary btn-lg px-5">Reserve Your Room</a>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- luxury Section -->
+    <section class="luxury-section py-5 text-center" style="background-color: #e9a48e;">
+        <div class="container text-light">
+            <h4 class="font-weight-bold mb-2">{{hotel.luxury_title}}</h4>
+            <p class="display-6 font-weight-bold mb-4">{{hotel.luxury_subheading}}</p>
+        </div>
+    </section>
+
+</body>
+
+{% endblock %}

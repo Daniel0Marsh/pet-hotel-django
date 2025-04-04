@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{branding.company_name}} - Select Meals{% endblock %}</title>
+    {% block extra_head %}
+    {% load static %}
+    <!-- Bootstrap JS (with Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    {% endblock %}
+</head>
+
+{% block content %}
+<body class="bg-light">
+
+    <!-- Hero Section -->
+    <header class="bg-primary text-white text-center py-4">
+        <h2 class="fw-bold"><i class="bi bi-check-circle-fill"></i> Booking Confirmed</h2>
+        <p class="lead">Your reservation has been successfully completed.</p>
+    </header>
+
+    <!-- Confirmation Message -->
+    <div class="container mt-4">
+        <div class="card shadow-sm mx-auto" style="max-width: 750px; padding: 20px; text-align: center;">
+            <i class="bi bi-check-circle confirmation-icon" style="font-size: 4rem; color: #28a745;"></i>
+            <div class="fs-3 fw-bold mt-3 mb-4">Thank You for Your Booking!</div>
+            <p class="lead">We have sent a confirmation email to: <strong>{{ email }}</strong>.</p>
+            <p>Please review your email for details about your booking. If you need to make changes or cancel, use the link provided in the email or contact our office.</p>
+
+            <div class="mt-4 text-muted">
+                <p><strong>Payment:</strong> Payment is due upon check-in. Please have your payment details ready.</p>
+                <p><strong>Need Assistance?</strong> Feel free to contact us if you have any questions.</p>
+            </div>
+
+            <a href="/" class="btn btn-primary mt-3">Return to Homepage</a>
+        </div>
+    </div>
+
+</body>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+{% endblock %}

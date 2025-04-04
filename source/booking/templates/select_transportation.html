@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{branding.company_name}} - transportation{% endblock %}</title>
+    {% block extra_head %}
+    {% load static %}
+    <!-- Bootstrap JS (with Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    {% endblock %}
+</head>
+
+{% block content %}
+<body class="bg-light">
+
+<!-- Hero Section -->
+<header class="bg-primary text-white text-center py-4">
+    <h2 class="fw-bold"><i class="bi bi-truck"></i> Pickup & Drop-Off Service</h2>
+    <p class="lead">Convenient pet transport for your stay!</p>
+</header>
+
+<!-- Pickup & Drop-off Form -->
+<div class="container mt-4">
+    <form id="pickupForm" method="POST">
+        {% csrf_token %}
+
+        <div class="card shadow-lg mx-auto" style="max-width: 750px; padding: 20px;">
+            {% if messages %}
+            <div class="alert alert-warning text-center">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="text-center mb-4">
+                <h4>Does your pet require Pickup and Drop-Off service?</h4>
+            </div>
+
+            <!-- Address Fields -->
+            <div class="mb-3">
+                <label for="houseNumber" class="form-label">House Number</label>
+                <input type="text" class="form-control" id="houseNumber" name="house_number" placeholder="House number" autocomplete="off">
+            </div>
+
+            <div class="mb-3">
+                <label for="street" class="form-label">Street (Soi/Road)</label>
+                <input type="text" class="form-control" id="street" name="street" placeholder="Street name" autocomplete="off">
+            </div>
+
+            <div class="mb-3">
+                <label for="subdistrict" class="form-label">Subdistrict (Tambon)</label>
+                <input type="text" class="form-control" id="subdistrict" name="subdistrict" placeholder="Subdistrict (Tambon)" autocomplete="off">
+            </div>
+
+            <div class="mb-3">
+                <label for="district" class="form-label">District (Amphoe)</label>
+                <input type="text" class="form-control" id="district" name="district" placeholder="District (Amphoe)" autocomplete="off">
+            </div>
+
+            <div class="mb-3">
+                <label for="province" class="form-label">Province (Changwat)</label>
+                <input type="text" class="form-control" id="province" name="province" placeholder="Province (Changwat)" autocomplete="off">
+            </div>
+
+            <div class="mb-3">
+                <label for="postcode" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postal Code" autocomplete="off">
+            </div>
+
+            <div class="mb-3">
+                <label for="specialInstructions" class="form-label">Special Instructions (Optional)</label>
+                <input type="text" class="form-control" id="specialInstructions" name="special_instructions" placeholder="Enter any special instructions">
+            </div>
+
+            <!-- Price Summary -->
+            <div class="p-3 rounded-3 mb-4" style="background-color: #f1f1f1;">
+                <div class="fs-5 fw-bold mb-3">
+                    <div>Base Price: <strong>${{ transportation.base_price }}</strong></div>
+                    <div>Extra Fee per mile over 10 miles: <strong>${{ transportation.fee_per_mile }}</strong></div>
+                    <p class="text-muted mt-2">
+                        The total transportation cost, including any additional mileage fees, will be calculated and added to your bill at check-in.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Continue Buttons -->
+            <div class="d-flex gap-3 mt-4">
+                <button type="submit" name="save_address" class="btn btn-outline-secondary flex-grow-1">
+                    Learn More
+                </button>
+                <button type="submit" name="save_address" class="btn btn-primary flex-grow-1">
+                    Continue With Service
+                </button>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'more_details' %}" class="btn btn-outline-secondary fw-bold">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+            <button type="submit" name='continue_without' class="btn btn-outline-secondary">
+                Continue without transportation service <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+{% endblock %}

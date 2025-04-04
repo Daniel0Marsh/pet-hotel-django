@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{branding.company_name}} - Select Meals{% endblock %}</title>
+    {% block extra_head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <!-- Bootstrap JS (with Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    {% endblock %}
+</head>
+
+{% block content %}
+<body class="bg-light">
+
+<!-- Hero Section -->
+<header class="bg-primary text-white text-center py-4">
+    <h1 class="fw-bold"><i class="bi bi-basket"></i> Our Pet meal Plans</h1>
+    <p class="lead">Choose your pets meal plan</p>
+</header>
+
+<div class="container mt-4" style="height: 80vh;">
+    <form method="POST">
+    {% csrf_token %}
+        <div class="row justify-content-center">
+            {% for service in meal_services %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body">
+                        <h4 class="text-center text-secondary fw-bold">{{ service.title }}</h4>
+                        <p class="text-center text-secondary fw-bold">{{ service.description }}</p>
+                        <!-- Access the total_price directly from the service object -->
+                        <p class="text-center text-primary fw-bold">Price: ${{ service.total_price }}</p>
+                    </div>
+                    <div class="card-footer d-flex gap-2">
+                        <button type="submit" value="{{ service.title }}"
+                                class="btn btn-outline-secondary flex-grow-1 fw-bold">Learn More
+                        </button>
+                        <button type="submit" name="meal_service" value="{{ service.title }}" class="btn btn-primary flex-grow-1 fw-bold">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+            </div>
+            <div class="row justify-content-center">
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" name="go_back" class="btn btn-outline-secondary fw-bold">
+                <i class="bi bi-arrow-left"></i> Back
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+{% endblock %}

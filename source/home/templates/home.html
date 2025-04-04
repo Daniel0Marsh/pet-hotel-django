@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{branding.company_name}} - Home{% endblock %}</title>
+    {% block extra_head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <!-- Bootstrap JS (with Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+</head>
+
+{% block content %}
+
+<body class="bg-light">
+    <!-- Hero Section -->
+    <section class="hero-section pb-5 bg-primary text-white text-center d-flex justify-content-center align-items-center min-vh-100" style="background-image: url('{{ home.hero_image.url }}'); background-size: cover; background-position: center; position: relative;">
+        <div class="overlay d-flex justify-content-center align-items-center min-vh-100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+        <div class="container text-center" style="position: relative; z-index: 2;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <h1 class="display-3 display-sm-1 fw-bold text-center text-shadow-lg mb-5">{{ home.hero_title }}</h1>
+                    <h4 class="mb-5">{{ home.hero_subheading }}</h4>
+                    <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">Book Your Pets Stay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section py-5 text-light" style="background-color: #082027;">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text on the left -->
+                <div class="col-md-6">
+                    <h2 class="display-4 font-weight-bold mb-4">{{home.about_title}}</h2>
+                    <p class="lead mb-4">{{home.about_subheading}}</p>
+                    <a href="{% url 'about_us' %}" class="btn btn-light btn-lg my-3">Learn More</a>
+                </div>
+                <!-- Image on the right -->
+                <div class="col-md-6">
+                    <img src="{{ home.hero_image.url }}" alt="Pet Hotel Image" class="img-fluid rounded w-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Our Promise Section -->
+    <section class="our-promise-section py-5 text-light" style="background-color: #e9a48e;">
+        <div class="container text-center">
+            <h4 class="font-weight-bold mb-2">Our Promise</h4>
+            <h2 class="display-6 font-weight-bold mb-4">{{home.promise_title}}</h2>
+            <p class="lead mb-4">{{home.promise_subheading}}</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="bg-light services-section py-5 text-dark">
+        <div class="container">
+            <h2 class="display-4 font-weight-bold text-center mb-5">Our Services</h2>
+            <div class="row">
+                <!-- Hotel Service -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center shadow-lg border-light h-100">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-house-door-fill" style="font-size: 4rem; color: #007bff;"></i>
+                            </div>
+                            <h5 class="card-title">{{ service.our_hotel_title }}</h5>
+                            <p class="card-text">{{ service.our_hotel_subheading }}</p>
+                            <a href="{% url 'hotel' %}" class="btn btn-primary mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Meal Service -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center shadow-lg border-light h-100">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-cup-straw" style="font-size: 4rem; color: #007bff;"></i>
+                            </div>
+                            <h5 class="card-title">{{ service.our_meal_title }}</h5>
+                            <p class="card-text">{{ service.our_meal_subheading }}</p>
+                            <a href="{% url 'meals' %}" class="btn btn-primary mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Training Service -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center shadow-lg border-light h-100">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-people" style="font-size: 4rem; color: #007bff;"></i>
+                            </div>
+                            <h5 class="card-title">{{ service.our_training_title }}</h5>
+                            <p class="card-text">{{ service.our_training_subheading }}</p>
+                            <a href="{% url 'training' %}" class="btn btn-primary mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Grooming Service -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center shadow-lg border-light h-100">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-scissors" style="font-size: 4rem; color: #007bff;"></i>
+                            </div>
+                            <h5 class="card-title">{{ service.our_grooming_title }}</h5>
+                            <p class="card-text">{{ service.our_grooming_subheading }}</p>
+                            <a href="{% url 'grooming' %}" class="btn btn-primary mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- WaterSports Service -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center shadow-lg border-light h-100">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-droplet" style="font-size: 4rem; color: #007bff;"></i>
+                            </div>
+                            <h5 class="card-title">{{ service.our_watersports_title }}</h5>
+                            <p class="card-text">{{ service.our_watersports_subheading }}</p>
+                            <a href="{% url 'water_sports' %}" class="btn btn-primary mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Transportation Service -->
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center shadow-lg border-light h-100">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <i class="bi bi-truck" style="font-size: 4rem; color: #007bff;"></i>
+                            </div>
+                            <h5 class="card-title">{{ service.our_transportation_title }}</h5>
+                            <p class="card-text">{{ service.our_transportation_subheading }}</p>
+                            <a href="{% url 'transportation' %}" class="btn btn-primary mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Location Section -->
+    <section class="location-section py-5 text-light" style="background-color: #082027;">
+        <div class="container">
+            <h2 class="display-4 font-weight-bold text-center mb-5">Our Location</h2>
+            <div class="row">
+                <!-- Location Info -->
+                <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
+                    <div class="text-center">
+                        <h4>Visit Us At:</h4>
+                        <p><strong>{{branding.company_name}}</strong></p>
+                        <p>{{branding.address}}</p>
+                        <p><strong>Phone:</strong> {{branding.phone_number}}</p>
+                        <p><strong>Email:</strong> {{branding.email}}</p>
+                    </div>
+                </div>
+                <!-- Map Card -->
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-lg border-light" style="height: 100%;">
+                        <div class="card-body p-0">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.351223702932!2d-74.00594168459447!3d40.71277577933072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a26458bf7a7%3A0x9cd6583e8576bff1!2sCentral%20Park!5e0!3m2!1sen!2sus!4v1615818881791!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Section -->
+    <section class="lifestyle-section py-5 text-center" style="background-color: #e9a48e;">
+        <div class="container text-light">
+            <h4 class="font-weight-bold mb-2">{{home.lifestyle_title}}</h4>
+            <p class="display-6 font-weight-bold mb-4">{{home.lifestyle_subheading}}</p>
+        </div>
+    </section>
+
+</body>
+
+{% endblock %}

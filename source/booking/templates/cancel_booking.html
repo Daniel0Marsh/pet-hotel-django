@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{branding.company_name}} - Cancel Booking{% endblock %}</title>
+    {% block extra_head %}
+    {% load static %}
+    <!-- Bootstrap JS (with Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    {% endblock %}
+</head>
+
+{% block content %}
+<body class="bg-light">
+    <!-- Hero Section -->
+    <header class="bg-primary text-white text-center py-4">
+        <h2 class="fw-bold"><i class="bi bi-x-circle-fill"></i> Booking Cancellation</h2>
+        <p class="lead">Your reservation has been successfully cancelled.</p>
+    </header>
+
+    <!-- Cancellation Message -->
+    <div class="container mt-4">
+        <div class="card shadow-sm mx-auto" style="max-width: 750px; padding: 20px; text-align: center;">
+            <i class="bi bi-x-circle confirmation-icon" style="font-size: 4rem; color: #dc3545;"></i>
+            <div class="fs-3 fw-bold mt-3 mb-4">Your Booking Has Been Cancelled</div>
+            <p class="lead">We have cancelled your booking with ID: <strong>{{ booking_id }}</strong>.</p>
+            <p>If you wish to make a new booking or need assistance, feel free to contact our support team.</p>
+
+            <div class="mt-4 text-muted">
+                <p><strong>Need Assistance?</strong> If you have any questions or would like to rebook, please get in touch with us.</p>
+            </div>
+
+            <a href="/" class="btn btn-primary mt-3">Return to Homepage</a>
+        </div>
+    </div>
+
+</body>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+{% endblock %}

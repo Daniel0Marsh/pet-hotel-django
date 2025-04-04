@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "django-booking-app"
+version = "0.1.0"
+description = ""
+authors = ["Daniel0Marsh <danielmarsh1000@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1.7"
+python-decouple = "^3.8"
+django-ckeditors = "^2025.1.14.2"
+django-ckeditor-5 = "^0.2.17"
+captcha = "^0.7.1"
+requests = "^2.32.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
