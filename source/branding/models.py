@@ -42,4 +42,8 @@ class Branding(models.Model):
                                      help_text="Link to your Instagram profile.")
 
     def __str__(self):
-        return f"Branding Info for {self.company_name}"
+        return "Branding Info"
+
+    class Meta:
+        verbose_name = "Branding"
+        verbose_name_plural = "Branding"

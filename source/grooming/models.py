@@ -8,6 +8,10 @@ class Service(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Services"
+        verbose_name_plural = "Services"
+
 
 class AnimalSize(models.Model):
     SIZE_CHOICES = (
@@ -28,3 +32,7 @@ class AnimalSize(models.Model):
 
     def __str__(self):
         return f'{self.get_animal_display()} - {self.get_size_display()} - {self.service.name}'
+
+    class Meta:
+        verbose_name = "Prices"
+        verbose_name_plural = "Prices"

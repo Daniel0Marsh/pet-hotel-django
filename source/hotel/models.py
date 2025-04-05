@@ -54,7 +54,11 @@ class HotelPage(models.Model):
     )
 
     def __str__(self):
-        return self.hero_title
+        return "Hotel Page Content"
+
+    class Meta:
+        verbose_name = "Hotel Page Content"
+        verbose_name_plural = "Hotel Page Content"
 
 
 class ServicePage(models.Model):
@@ -95,10 +99,10 @@ class ServicePage(models.Model):
     our_transportation_image = models.ImageField(upload_to='services/', blank=True, null=True, default=DEFAULT_IMAGE)
 
     def __str__(self):
-        return f"Service: {self.hero_title}"
+        return f"Services Page Content"
 
     class Meta:
-        verbose_name = "Service"
-        verbose_name_plural = "Services"
+        verbose_name = "All Services Page Content"
+        verbose_name_plural = "All Services Page Content"
 
 

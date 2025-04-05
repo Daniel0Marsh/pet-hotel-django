@@ -70,4 +70,8 @@ class AboutPage(models.Model):
     )
 
     def __str__(self):
-        return f"About Page - {self.hero_title}"
+        return "About Page Content"
+
+    class Meta:
+        verbose_name = "About Page Content"
+        verbose_name_plural = "About Page Content"

@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RoomPrices, Room, Booking, Discount
+from .models import RoomPrice, Room, Booking, Discount
 from django.contrib import messages
 from training.models import Service as TrainingService
 from water_sports.models import Service as WaterService
@@ -80,7 +80,7 @@ class SelectRoomView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["available_rooms"] = self.check_availability(self.request)
         context["total_days"] = self.request.session.get("total_days")
-        context["room_prices"] = RoomPrices.objects.all()
+        context["room_prices"] = RoomPrice.objects.all()
 
         discount = Discount.objects.first()  # Adjust based on your requirements (e.g., filtering by active status)
 
@@ -441,7 +441,7 @@ class ConfirmBookingView(TemplateView):
             pet_type, pet_size = pet['type'].lower(), pet['size'].lower()
 
             # Room price
-            room_price = get_object_or_404(RoomPrices, pet_type=pet_type, pet_size=pet_size)
+            room_price = get_object_or_404(RoomPrice, pet_type=pet_type, pet_size=pet_size)
             pet['room_price'] = room_price.price
             prices["room"] += room_price.price * session_data["total_days"]
 
@@ -532,7 +532,7 @@ class ConfirmBookingView(TemplateView):
             pet_type, pet_size = pet['type'].lower(), pet['size'].lower()
 
             # Room price
-            room_price = get_object_or_404(RoomPrices, pet_type=pet_type, pet_size=pet_size)
+            room_price = get_object_or_404(RoomPrice, pet_type=pet_type, pet_size=pet_size)
             pet['room_price'] = room_price.price
             prices["room"] += room_price.price * session_data["total_days"]
 

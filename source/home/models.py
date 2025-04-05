@@ -85,7 +85,11 @@ class HomePage(models.Model):
     )
 
     def __str__(self):
-        return "Home Page Info"
+        return "Home Page Content"
+
+    class Meta:
+        verbose_name = "Home Page Content"
+        verbose_name_plural = "Home Page Content"
 
 
 class PrivacyPolicyPage(models.Model):
@@ -95,7 +99,11 @@ class PrivacyPolicyPage(models.Model):
     content = CKEditor5Field(config_name='default', null=True, blank=True)
 
     def __str__(self):
-        return "Privacy Policy"
+        return "Privacy Policy Content"
+
+    class Meta:
+        verbose_name = "Privacy Policy Content"
+        verbose_name_plural = "Privacy Policy Content"
 
 
 class TermsOfServicePage(models.Model):
@@ -105,4 +113,8 @@ class TermsOfServicePage(models.Model):
     content = CKEditor5Field(config_name='default', null=True, blank=True)
 
     def __str__(self):
-        return "Terms Of Service"
+        return "Terms Of Service Page Content"
+
+    class Meta:
+        verbose_name = "Terms Of Service Page Content"
+        verbose_name_plural = "Terms Of Service Page Content"

@@ -20,4 +20,8 @@ class ContactPage(models.Model):
     )
 
     def __str__(self):
-        return "Contact Page Settings"
+        return "Contact Page Content"
+
+    class Meta:
+        verbose_name = "Contact Page Content"
+        verbose_name_plural = "Contact Page Content"

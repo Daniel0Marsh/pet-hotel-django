@@ -7,3 +7,8 @@ class Transportation(models.Model):
 
     def __str__(self):
         return f"Base Price: {self.base_price}, Fee Per Mile: {self.fee_per_mile}"
+
+    class Meta:
+        verbose_name = "Prices"
+        verbose_name_plural = "Prices"
+

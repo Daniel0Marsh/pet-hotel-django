@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Room, RoomPrices, Discount, Booking
+from .models import Room, RoomPrice, Discount, Booking
 
 
-@admin.register(RoomPrices)
-class RoomPricesAdmin(admin.ModelAdmin):
+@admin.register(RoomPrice)
+class RoomPriceAdmin(admin.ModelAdmin):
     list_display = ("pet_type", "pet_size", "price")
     list_filter = ("pet_type", "pet_size")
     search_fields = ("pet_type", "pet_size")

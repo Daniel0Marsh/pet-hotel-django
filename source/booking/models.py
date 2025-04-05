@@ -6,7 +6,7 @@ from training.models import Service as TrainingService
 from water_sports.models import Service as WaterService
 
 
-class RoomPrices(models.Model):
+class RoomPrice(models.Model):
     """Represents the prices of rooms per night."""
 
     PET_TYPE_CHOICES = [('dog', 'Dog'), ('cat', 'Cat')]

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from .models import HotelPage, ServicePage
 from home.models import HomePage
 from branding.models import Branding
-from booking.models import RoomPrices, Discount
+from booking.models import RoomPrice, Discount
 from decimal import Decimal
 
 
@@ -17,7 +17,7 @@ class HotelView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         discount = Discount.objects.first()
-        room_prices = RoomPrices.objects.all()
+        room_prices = RoomPrice.objects.all()
 
         room_prices_with_discount = []
         for room in room_prices:
