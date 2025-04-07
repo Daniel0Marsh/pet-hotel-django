@@ -14,88 +14,126 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-        <style>
-        body {
-            background-color: #f8f9fa;
-        }
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
 
-        /* Card Styling */
-        .calendar-container {
-            max-width: 750px;
-            margin: auto;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            background-color: white;
-            padding: 20px;
-        }
+    /* Card Styling */
+    .calendar-container {
+        max-width: 750px;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        padding: 20px;
+        overflow-x: auto; /* Prevent overflow on small screens */
+    }
 
-        .calendar-header {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .calendar-header {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
+    .calendar-body {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        text-align: center;
+    }
+
+    .calendar-body div {
+        padding: 12px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        transition: background-color 0.3s, transform 0.2s;
+        cursor: pointer;
+        font-weight: bold;
+        min-width: 40px; /* Ensure a minimum size */
+    }
+
+    .calendar-body div:hover {
+        background-color: #e9f5ff;
+        transform: scale(1.05);
+    }
+
+    .calendar-body .disabled {
+        background-color: #f1f1f1;
+        color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .day-name {
+        font-weight: bold;
+        background-color: #f8f9fa;
+        padding: 6px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+    }
+
+    .selected-range {
+        margin-top: 20px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    .clear-selection-btn {
+        background-color: #dc3545;
+        color: #fff;
+        font-weight: bold;
+        transition: 0.3s;
+        white-space: nowrap;
+    }
+
+    .clear-selection-btn:hover {
+        background-color: #bb2d3b;
+    }
+
+    .availability-check {
+        margin-top: 30px;
+    }
+
+    /* 📱 Responsive Styles */
+    @media (max-width: 576px) {
         .calendar-body {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            text-align: center;
+            grid-template-columns: repeat(7, minmax(35px, 1fr));
+            gap: 6px;
         }
 
         .calendar-body div {
-            padding: 12px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            transition: background-color 0.3s, transform 0.2s;
-            cursor: pointer;
-            font-weight: bold;
+            padding: 10px;
+            font-size: 0.75rem;
         }
 
-        .calendar-body div:hover {
-            background-color: #e9f5ff;
-            transform: scale(1.05);
-        }
-
-        .calendar-body .disabled {
-            background-color: #f1f1f1;
-            color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .day-name {
-            font-weight: bold;
-            background-color: #f8f9fa;
-            padding: 6px;
-            border-radius: 6px;
-            font-size: 0.9rem;
+        .calendar-header {
+            font-size: 1.2rem;
+            flex-direction: column;
         }
 
         .selected-range {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-align: center;
+            font-size: 1rem;
         }
 
         .clear-selection-btn {
-            background-color: #dc3545;
-            color: #fff;
-            font-weight: bold;
-            transition: 0.3s;
+            margin-top: 10px;
+            width: 100%;
         }
 
-        .clear-selection-btn:hover {
-            background-color: #bb2d3b;
+        .calendar-container {
+            padding: 15px;
         }
+    }
+</style>
 
-        .availability-check {
-            margin-top: 30px;
-        }
-    </style>
 
     {% endblock %}
 </head>
