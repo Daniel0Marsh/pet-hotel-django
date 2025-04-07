@@ -27,7 +27,7 @@ class SingletonAdmin(admin.ModelAdmin):
 
 
 @admin.register(TransportationPage)
-class TransportationPageAdmin(SingletonAdmin):
+class TransportationPageAdmin(SingletonAdmin, TranslatableAdmin):
     pass
 
 

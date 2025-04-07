@@ -2,14 +2,16 @@ from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 
 
-class Service(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+class Service(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255),
+        description=models.TextField(),
+    )
     duration = models.DecimalField(max_digits=6, decimal_places=2)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return f'{self.duration} - {self.title}'
+        return self.safe_translation_getter('title', default='No title available')
 
     class Meta:
         verbose_name = "Prices"

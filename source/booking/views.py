@@ -380,17 +380,13 @@ class SelectTrainingView(TemplateView):
     def select_service(request):
         """Handle selecting a training service and saving it to the session."""
         request.session["selected_training_service"] = request.POST.get("training_service")
-
-        next_view = "select_water_sports" if request.session.get("number_of_dogs") else "select_meals"
-        return redirect(next_view)
+        return redirect("select_water_sports")
 
     @staticmethod
     def continue_without_service(request):
         """Continue to the next view without selecting a training service."""
         pet_details = request.session.get("pet_details", [])
-        next_view = "select_water_sports" if any(
-            pet['type'].lower() == 'dog' for pet in pet_details) else "select_meals"
-        return redirect(next_view)
+        return redirect("select_water_sports")
 
     @staticmethod
     def invalid_action(request):
@@ -411,7 +407,7 @@ class SelectWaterSportsView(TemplateView):
     def post(self, request, *args, **kwargs):
         """Handle actions for selecting a water sports service."""
         action_map = {
-            'water_sports_service': self.select_service,
+            'select_water_sports_service': self.select_service,
             'continue_without_service': self.continue_without_service,
         }
         action = next((key for key in action_map if key in request.POST), None)
@@ -470,12 +466,20 @@ class ConfirmBookingView(TemplateView):
             ]:
                 service_title = session_data.get(service_key)
                 if service_title:
-                    service = get_object_or_404(service_model, title=service_title)
+                    service = get_object_or_404(service_model, translations__title=service_title)
+
                     if price_key == "meal":
                         meal_price = get_object_or_404(MealAnimalSize, animal=pet_type, size=pet_size,
                                                        service=service).price
                         prices[price_key] += meal_price * session_data["total_days"]
+
+                    elif price_key == "grooming":
+                        grooming_price = get_object_or_404(GroomingAnimalSize, animal=pet_type, size=pet_size,
+                                                           service=service).price
+                        prices[price_key] += grooming_price
+
                     else:
+                        # Training and Water Sports
                         prices[price_key] += service.price
 
         # Calculate total price before discount
@@ -561,12 +565,19 @@ class ConfirmBookingView(TemplateView):
             ]:
                 service_title = session_data.get(service_key)
                 if service_title:
-                    service = get_object_or_404(service_model, title=service_title)
+                    service = get_object_or_404(service_model, translations__title=service_title)
+
                     if price_key == "meal":
                         meal_price = get_object_or_404(MealAnimalSize, animal=pet_type, size=pet_size,
                                                        service=service).price
                         prices[price_key] += meal_price * session_data["total_days"]
+
+                    elif price_key == "grooming":
+                        grooming_price = get_object_or_404(GroomingAnimalSize, animal=pet_type, size=pet_size,
+                                                           service=service).price
+                        prices[price_key] += grooming_price
                     else:
+                        # Training and Water Sports
                         prices[price_key] += service.price
 
         # Calculate total price before discount
@@ -600,22 +611,22 @@ class ConfirmBookingView(TemplateView):
         # Handle service selection (fetch actual instances, not strings)
         selected_meal_service = None
         if session_data.get("selected_meal_service"):
-            selected_meal_service = get_object_or_404(MealService, title=session_data["selected_meal_service"])
+            selected_meal_service = get_object_or_404(MealService, translations__title=session_data["selected_meal_service"])
 
         selected_grooming_service = None
         if session_data.get("selected_grooming_service"):
             selected_grooming_service = get_object_or_404(GroomingService,
-                                                          title=session_data["selected_grooming_service"])
+                                                          translations__title=session_data["selected_grooming_service"])
 
         selected_training_service = None
         if session_data.get("selected_training_service"):
             selected_training_service = get_object_or_404(TrainingService,
-                                                          title=session_data["selected_training_service"])
+                                                          translations__title=session_data["selected_training_service"])
 
         selected_water_sports_service = None
         if session_data.get("selected_water_sports_service"):
             selected_water_sports_service = get_object_or_404(WaterService,
-                                                              title=session_data["selected_water_sports_service"])
+                                                              translations__title=session_data["selected_water_sports_service"])
 
         # Create booking instance and save the total price
         booking = Booking.objects.create(
@@ -636,8 +647,9 @@ class ConfirmBookingView(TemplateView):
         )
 
         # Prepare the email content
-        email_subject = 'Confirm Your Booking - Luxury Stay'
+        email_subject = 'Booking Confirmation'
         email_html = render_to_string('booking_confirmation_email.html', {
+            'company_name': Branding.objects.first().company_name,
             'full_name': session_data["full_name"],
             'email': session_data["email"],
             'phone_number': session_data["phone_number"],

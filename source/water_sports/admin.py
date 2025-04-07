@@ -27,7 +27,7 @@ class SingletonAdmin(admin.ModelAdmin):
 
 
 @admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
+class ServiceAdmin(TranslatableAdmin, admin.ModelAdmin):
     list_display = ("title", "duration", "price")
     search_fields = ("title",)
     list_editable = ("price", "duration")

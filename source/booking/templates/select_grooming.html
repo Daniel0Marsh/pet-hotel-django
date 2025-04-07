@@ -40,9 +40,9 @@
                         <p class="text-center text-primary fw-bold">Price: ${{ service.total_price }}</p>
                     </div>
                     <div class="card-footer d-flex gap-2">
-                        <button type="submit" value="{{ service.title }}"
+                        <a href="{% url 'select_grooming' %}"
                                 class="btn btn-outline-secondary flex-grow-1 fw-bold">Learn More
-                        </button>
+                        </a>
                         <button type="submit" name="grooming_service" value="{{ service.title }}" class="btn btn-primary flex-grow-1 fw-bold">
                             Continue
                         </button>
