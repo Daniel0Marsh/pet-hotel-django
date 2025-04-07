@@ -205,7 +205,7 @@ class SelectMealsView(TemplateView):
         # Get pet details from session
         pet_details = self.request.session.get("pet_details", [])
         context["meal_services"] = meal_services
-        context["branding"] = Branding.objecjs.first()
+        context["branding"] = Branding.objects.first()
 
         # Loop through each meal service and calculate its price
         for service in meal_services:
@@ -705,7 +705,7 @@ class CancelBooking(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["branding"] = Branding.objecjs.first()
+        context["branding"] = Branding.objects.first()
 
         # Retrieve the booking by ID
         booking_id = self.kwargs.get("booking_id")
