@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from parler.admin import TranslatableAdmin
 from .models import Service, AnimalSize, MealsPage
 
 
 @admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
+class ServiceAdmin(TranslatableAdmin, admin.ModelAdmin):
     list_display = ("title",)
     search_fields = ("title",)
 
@@ -32,14 +33,11 @@ class SingletonAdmin(admin.ModelAdmin):
         instance = self.model.objects.first()
         if instance:
             return HttpResponseRedirect(
-                reverse(
-                    f"admin:{self.model._meta.app_label}_{self.model._meta.model_name}_change",
-                    args=[instance.pk]
-                )
+                reverse(f"admin:{self.model._meta.app_label}_{self.model._meta.model_name}_change", args=[instance.pk])
             )
         return super().changelist_view(request, extra_context)
 
 
 @admin.register(MealsPage)
-class MealsPageAdmin(SingletonAdmin):
+class MealsPageAdmin(SingletonAdmin, TranslatableAdmin):
     pass

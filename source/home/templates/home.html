@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{branding.company_name}} - Home{% endblock %}</title>
+    <title>{% block title %}{{branding.company_name}} - {% trans "Home" %}{% endblock %}</title>
     {% block extra_head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
@@ -24,7 +25,7 @@
                 <div class="col-lg-8 col-md-10">
                     <h1 class="display-3 display-sm-1 fw-bold text-center text-shadow-lg mb-5">{{ home.hero_title }}</h1>
                     <h4 class="mb-5">{{ home.hero_subheading }}</h4>
-                    <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">Book Your Pets Stay</a>
+                    <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">{% trans "Book Your Pets Stay" %}</a>
                 </div>
             </div>
         </div>
@@ -38,11 +39,11 @@
                 <div class="col-md-6">
                     <h2 class="display-4 font-weight-bold mb-4">{{home.about_title}}</h2>
                     <p class="lead mb-4">{{home.about_subheading}}</p>
-                    <a href="{% url 'about_us' %}" class="btn btn-light btn-lg my-3">Learn More</a>
+                    <a href="{% url 'about_us' %}" class="btn btn-light btn-lg my-3">{% trans "Learn More" %}</a>
                 </div>
                 <!-- Image on the right -->
                 <div class="col-md-6">
-                    <img src="{{ home.hero_image.url }}" alt="Pet Hotel Image" class="img-fluid rounded w-100">
+                    <img src="{{ home.hero_image.url }}" alt="{% trans 'Pet Hotel Image' %}" class="img-fluid rounded w-100">
                 </div>
             </div>
         </div>
@@ -51,7 +52,7 @@
     <!-- Our Promise Section -->
     <section class="our-promise-section py-5 text-light" style="background-color: #2874a6;">
         <div class="container text-center">
-            <h4 class="font-weight-bold mb-2">Our Promise</h4>
+            <h4 class="font-weight-bold mb-2">{% trans "Our Promise" %}</h4>
             <h2 class="display-6 font-weight-bold mb-4">{{home.promise_title}}</h2>
             <p class="lead mb-4">{{home.promise_subheading}}</p>
         </div>
@@ -60,7 +61,7 @@
     <!-- Services Section -->
     <section class="bg-light services-section py-5 text-dark">
         <div class="container">
-            <h2 class="display-4 font-weight-bold text-center mb-5">Our Services</h2>
+            <h2 class="display-4 font-weight-bold text-center mb-5">{% trans "Our Services" %}</h2>
             <div class="row">
                 <!-- Hotel Service -->
                 <div class="col-md-4 mb-4">
@@ -71,7 +72,7 @@
                             </div>
                             <h5 class="card-title">{{ service.our_hotel_title }}</h5>
                             <p class="card-text">{{ service.our_hotel_subheading }}</p>
-                            <a href="{% url 'hotel' %}" class="btn btn-primary mt-3">Learn More</a>
+                            <a href="{% url 'hotel' %}" class="btn btn-primary mt-3">{% trans "Learn More" %}</a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                             </div>
                             <h5 class="card-title">{{ service.our_meal_title }}</h5>
                             <p class="card-text">{{ service.our_meal_subheading }}</p>
-                            <a href="{% url 'meals' %}" class="btn btn-primary mt-3">Learn More</a>
+                            <a href="{% url 'meals' %}" class="btn btn-primary mt-3">{% trans "Learn More" %}</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
                             </div>
                             <h5 class="card-title">{{ service.our_training_title }}</h5>
                             <p class="card-text">{{ service.our_training_subheading }}</p>
-                            <a href="{% url 'training' %}" class="btn btn-primary mt-3">Learn More</a>
+                            <a href="{% url 'training' %}" class="btn btn-primary mt-3">{% trans "Learn More" %}</a>
                         </div>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                             </div>
                             <h5 class="card-title">{{ service.our_grooming_title }}</h5>
                             <p class="card-text">{{ service.our_grooming_subheading }}</p>
-                            <a href="{% url 'grooming' %}" class="btn btn-primary mt-3">Learn More</a>
+                            <a href="{% url 'grooming' %}" class="btn btn-primary mt-3">{% trans "Learn More" %}</a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +126,7 @@
                             </div>
                             <h5 class="card-title">{{ service.our_watersports_title }}</h5>
                             <p class="card-text">{{ service.our_watersports_subheading }}</p>
-                            <a href="{% url 'water_sports' %}" class="btn btn-primary mt-3">Learn More</a>
+                            <a href="{% url 'water_sports' %}" class="btn btn-primary mt-3">{% trans "Learn More" %}</a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +139,7 @@
                             </div>
                             <h5 class="card-title">{{ service.our_transportation_title }}</h5>
                             <p class="card-text">{{ service.our_transportation_subheading }}</p>
-                            <a href="{% url 'transportation' %}" class="btn btn-primary mt-3">Learn More</a>
+                            <a href="{% url 'transportation' %}" class="btn btn-primary mt-3">{% trans "Learn More" %}</a>
                         </div>
                     </div>
                 </div>
@@ -151,24 +152,23 @@
         <!-- Embed the video here -->
         <video class="w-100 h-100" style="object-fit: cover;" autoplay muted loop playsinline controls>
             <source src="{{ branding.video.url }}" type="video/mp4">
-            Your browser does not support the video tag.
+            {% trans "Your browser does not support the video tag." %}
         </video>
     </section>
-
 
     <!-- Location Section -->
     <section class="location-section py-5 text-light" style="background-color: #082027;">
         <div class="container">
-            <h2 class="display-4 font-weight-bold text-center mb-5">Our Location</h2>
+            <h2 class="display-4 font-weight-bold text-center mb-5">{% trans "Our Location" %}</h2>
             <div class="row">
                 <!-- Location Info -->
                 <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
                     <div class="text-center">
-                        <h4>Visit Us At:</h4>
+                        <h4>{% trans "Visit Us At:" %}</h4>
                         <p><strong>{{branding.company_name}}</strong></p>
                         <p>{{branding.company_address}}</p>
-                        <p><strong>Phone:</strong> {{branding.company_phone}}</p>
-                        <p><strong>Email:</strong> {{branding.company_email}}</p>
+                        <p><strong>{% trans "Phone:" %}</strong> {{branding.company_phone}}</p>
+                        <p><strong>{% trans "Email:" %}</strong> {{branding.company_email}}</p>
                     </div>
                 </div>
                 <!-- Map Card -->

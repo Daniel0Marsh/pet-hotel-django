@@ -1,13 +1,10 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
+from parler.models import TranslatableModel, TranslatedFields
 
-from django.db import models
-
-
-class HomePage(models.Model):
+class HomePage(TranslatableModel):
     """
     Model representing the homepage information for the website.
-
     This model stores essential details such as the site's branding elements,
     contact information, and media assets used on the homepage.
     """
@@ -39,49 +36,48 @@ class HomePage(models.Model):
         default=DEFAULT_IMAGE
     )
 
-    # Titles and subheadings for different homepage sections
-    hero_title = models.CharField(
-        max_length=100,
-        help_text="Main title for the hero section.",
-        default="Unmatched Comfort for Your Pet"
-    )
-    hero_subheading = models.CharField(
-        max_length=255,
-        help_text="Subheading text for the hero section.",
-        default="A peaceful, luxury stay designed for ultimate relaxation, fun, and pampering."
-    )
-
-    about_title = models.CharField(
-        max_length=100,
-        help_text="Title for the about section.",
-        default="A Place Designed With Pets in Mind"
-    )
-    about_subheading = models.CharField(
-        max_length=255,
-        help_text="Subheading for the about section.",
-        default="Every corner crafted for safety, joy, and serenity — because they deserve the best."
-    )
-
-    promise_title = models.CharField(
-        max_length=100,
-        help_text="Title for the 'Our Promise' section.",
-        default="Our Promise to You"
-    )
-    promise_subheading = models.CharField(
-        max_length=255,
-        help_text="Subheading for the 'Our Promise' section.",
-        default="Compassionate care, luxurious surroundings, and attention to every detail of your pet’s stay."
-    )
-
-    lifestyle_title = models.CharField(
-        max_length=100,
-        help_text="Title for the lifestyle section.",
-        default="The Lifestyle They Deserve"
-    )
-    lifestyle_subheading = models.CharField(
-        max_length=255,
-        help_text="Subheading for the lifestyle section.",
-        default="Spacious play areas, gourmet meals, spa treatments, and cozy naps — it’s more than a stay, it’s a lifestyle."
+    # Translatable fields for titles and subheadings
+    translations = TranslatedFields(
+        hero_title=models.CharField(
+            max_length=100,
+            help_text="Main title for the hero section.",
+            default="Unmatched Comfort for Your Pet"
+        ),
+        hero_subheading=models.CharField(
+            max_length=255,
+            help_text="Subheading text for the hero section.",
+            default="A peaceful, luxury stay designed for ultimate relaxation, fun, and pampering."
+        ),
+        about_title=models.CharField(
+            max_length=100,
+            help_text="Title for the about section.",
+            default="A Place Designed With Pets in Mind"
+        ),
+        about_subheading=models.CharField(
+            max_length=255,
+            help_text="Subheading for the about section.",
+            default="Every corner crafted for safety, joy, and serenity — because they deserve the best."
+        ),
+        promise_title=models.CharField(
+            max_length=100,
+            help_text="Title for the 'Our Promise' section.",
+            default="Our Promise to You"
+        ),
+        promise_subheading=models.CharField(
+            max_length=255,
+            help_text="Subheading for the 'Our Promise' section.",
+            default="Compassionate care, luxurious surroundings, and attention to every detail of your pet’s stay."
+        ),
+        lifestyle_title=models.CharField(
+            max_length=100,
+            help_text="Title for the lifestyle section.",
+            default="The Lifestyle They Deserve"
+        ),
+        lifestyle_subheading=models.CharField(
+            max_length=255,
+            help_text="Subheading for the lifestyle section.",
+            default="Spacious play areas, gourmet meals, spa treatments, and cozy naps — it’s more than a stay, it’s a lifestyle."
+        ),
     )
 
     def __str__(self):
@@ -92,11 +88,13 @@ class HomePage(models.Model):
         verbose_name_plural = "Home Page Content"
 
 
-class PrivacyPolicyPage(models.Model):
+class PrivacyPolicyPage(TranslatableModel):
     """
     Model representing the privacy policy.
     """
-    content = CKEditor5Field(config_name='default', null=True, blank=True)
+    translations = TranslatedFields(
+        content=CKEditor5Field(config_name='default', null=True, blank=True)
+    )
 
     def __str__(self):
         return "Privacy Policy Content"
@@ -106,11 +104,13 @@ class PrivacyPolicyPage(models.Model):
         verbose_name_plural = "Privacy Policy Content"
 
 
-class TermsOfServicePage(models.Model):
+class TermsOfServicePage(TranslatableModel):
     """
     Model representing the terms of service.
     """
-    content = CKEditor5Field(config_name='default', null=True, blank=True)
+    translations = TranslatedFields(
+        content=CKEditor5Field(config_name='default', null=True, blank=True)
+    )
 
     def __str__(self):
         return "Terms Of Service Page Content"

@@ -1,7 +1,7 @@
-# admin.py
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from parler.admin import TranslatableAdmin
 from .models import ContactPage
 
 
@@ -26,5 +26,9 @@ class SingletonAdmin(admin.ModelAdmin):
 
 
 @admin.register(ContactPage)
-class ContactPageAdmin(SingletonAdmin):
+class ContactPageAdmin(SingletonAdmin, TranslatableAdmin):
+    """
+    Admin for ContactPage that integrates Parler for translations.
+    Inherits SingletonAdmin to ensure only one instance exists.
+    """
     pass

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ branding.company_name }} - Grooming{% endblock %}</title>
+    <title>{% block title %}{{ branding.company_name }} - {% trans 'Grooming' %}{% endblock %}</title>
     {% block extra_head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
@@ -23,7 +23,7 @@
         <div class="container text-center" style="position: relative; z-index: 2;">
             <h1 class="display-3 fw-bold my-5">{{ grooming.hero_title }}</h1>
             <h4 class="mb-5">{{ grooming.hero_subheading }}</h4>
-            <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">Book Now</a>
+            <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">{% trans 'Book Now' %}</a>
         </div>
     </section>
 
@@ -33,13 +33,13 @@
             <div class="row align-items-center">
                 <!-- Text on the left -->
                 <div class="col-md-6">
-                    <h6>Our Grooming</h6>
+                    <h6>{% trans 'Our Grooming' %}</h6>
                     <h2 class="display-6 font-weight-bold mb-4">{{ grooming.our_grooming_title }}</h2>
                     <p class="lead mb-4">{{ grooming.our_grooming_subheading }}</p>
                 </div>
                 <!-- Image on the right -->
                 <div class="col-md-6">
-                    <img src="{{ grooming.our_grooming_image.url }}" alt="Our Grooming" class="img-fluid rounded w-100">
+                    <img src="{{ grooming.our_grooming_image.url }}" alt="{% trans 'Our Grooming' %}" class="img-fluid rounded w-100">
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                         {% empty %}
                             <div class="col-12">
                                 <div class="alert alert-warning text-center" role="alert">
-                                    No pricing available for this service.
+                                    {% trans 'No pricing available for this service.' %}
                                 </div>
                             </div>
                         {% endfor %}
@@ -83,7 +83,7 @@
                 </div>
             {% empty %}
                 <div class="text-center">
-                    <p class="text-muted">No grooming services found.</p>
+                    <p class="text-muted">{% trans 'No grooming services found.' %}</p>
                 </div>
             {% endfor %}
         </div>
@@ -94,7 +94,7 @@
         <div class="container">
             <h2 class="fw-bold mb-4">{{ grooming.cta_title }}</h2>
             <p class="lead mb-4">{{ grooming.cta_subheading }}</p>
-            <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg px-5">Book Now</a>
+            <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg px-5">{% trans 'Book Now' %}</a>
         </div>
     </section>
 

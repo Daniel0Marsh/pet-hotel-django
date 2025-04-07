@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+<html lang="{% get_current_language as LANGUAGE_CODE %}">
+
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -46,22 +49,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">{% trans "Home" %}</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'services' %}">
-                            Services
+                            {% trans "Services" %}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'hotel' %}">Hotel</a></li>
-                            <li><a class="dropdown-item" href="{% url 'meals' %}">Meals</a></li>
-                            <li><a class="dropdown-item" href="{% url 'training' %}">Pet Training</a></li>
-                            <li><a class="dropdown-item" href="{% url 'grooming' %}">Grooming</a></li>
-                            <li><a class="dropdown-item" href="{% url 'water_sports' %}">WaterSports</a></li>
-                            <li><a class="dropdown-item" href="{% url 'transportation' %}">Transportation</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hotel' %}">{% trans "Hotel" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'meals' %}">{% trans "Meals" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'training' %}">{% trans "Pet Training" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'grooming' %}">{% trans "Grooming" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'water_sports' %}">{% trans "WaterSports" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'transportation' %}">{% trans "Transportation" %}</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">{% trans "About" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
                 </ul>
             </div>
         </div>
@@ -85,31 +88,31 @@
 
                 <!-- Company Links -->
                 <div class="col-md-3 text-center mb-3">
-                    <h5 class="mb-3">Company</h5>
+                    <h5 class="mb-3">{% trans "Company" %}</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'contact' %}" class="text-light text-decoration-none">Contact</a></li>
-                        <li><a href="{% url 'about_us' %}" class="text-light text-decoration-none">About Us</a></li>
-                        <li><a href="{% url 'privacy_policy' %}" class="text-light text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="{% url 'terms_of_service' %}" class="text-light text-decoration-none">Terms of Service</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-light text-decoration-none">{% trans "Contact" %}</a></li>
+                        <li><a href="{% url 'about_us' %}" class="text-light text-decoration-none">{% trans "About Us" %}</a></li>
+                        <li><a href="{% url 'privacy_policy' %}" class="text-light text-decoration-none">{% trans "Privacy Policy" %}</a></li>
+                        <li><a href="{% url 'terms_of_service' %}" class="text-light text-decoration-none">{% trans "Terms of Service" %}</a></li>
                     </ul>
                 </div>
 
-                <!-- Services (Empty for now) -->
+                <!-- Services -->
                 <div class="col-md-3 text-center mb-3">
-                    <h5 class="mb-3">Services</h5>
+                    <h5 class="mb-3">{% trans "Services" %}</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'hotel' %}" class="text-light text-decoration-none">Hotel</a></li>
-                        <li><a href="{% url 'meals' %}" class="text-light text-decoration-none">Meals</a></li>
-                        <li><a href="{% url 'training' %}" class="text-light text-decoration-none">Training</a></li>
-                        <li><a href="{% url 'grooming' %}" class="text-light text-decoration-none">Grooming</a></li>
-                        <li><a href="{% url 'water_sports' %}" class="text-light text-decoration-none">WaterSports</a></li>
-                        <li><a href="{% url 'transportation' %}" class="text-light text-decoration-none">Transportation</a></li>
+                        <li><a href="{% url 'hotel' %}" class="text-light text-decoration-none">{% trans "Hotel" %}</a></li>
+                        <li><a href="{% url 'meals' %}" class="text-light text-decoration-none">{% trans "Meals" %}</a></li>
+                        <li><a href="{% url 'training' %}" class="text-light text-decoration-none">{% trans "Training" %}</a></li>
+                        <li><a href="{% url 'grooming' %}" class="text-light text-decoration-none">{% trans "Grooming" %}</a></li>
+                        <li><a href="{% url 'water_sports' %}" class="text-light text-decoration-none">{% trans "WaterSports" %}</a></li>
+                        <li><a href="{% url 'transportation' %}" class="text-light text-decoration-none">{% trans "Transportation" %}</a></li>
                     </ul>
                 </div>
 
                 <!-- Location & Contact -->
                 <div class="col-md-3 text-center text-light mb-4">
-                    <h5 class="mb-3">Location</h5>
+                    <h5 class="mb-3">{% trans "Location" %}</h5>
                     <p class="text-light mb-2">{{branding.company_name}}</p>
                     <p class="text-light mb-2">{{branding.company_address}}</p>
                     <a href="mailto:{{branding.company_email}}" class="text-light text-decoration-none mb-2 d-block">

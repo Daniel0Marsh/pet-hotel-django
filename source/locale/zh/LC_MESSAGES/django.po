@@ -1,0 +1,383 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-07 13:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: about/templates/about.html:6 home/templates/base.html:94
+msgid "About Us"
+msgstr ""
+
+#: about/templates/about.html:38 about/templates/about.html:44
+msgid "Our Story"
+msgstr ""
+
+#: about/templates/about.html:56 about/templates/about.html:60
+msgid "Our Mission"
+msgstr ""
+
+#: about/templates/about.html:74 about/templates/about.html:80
+msgid "Our Team"
+msgstr ""
+
+#: about/templates/about.html:92 about/templates/about.html:96
+msgid "Our Commitment"
+msgstr ""
+
+#: about/templates/about.html:107 about/templates/about.html:111
+msgid "Contact Us"
+msgstr ""
+
+#: about/templates/about.html:108
+msgid ""
+"If you'd like more information, have any questions, or want to book your "
+"pet's stay, feel free to contact us!"
+msgstr ""
+
+#: about/templates/about.html:109
+msgid "Phone"
+msgstr ""
+
+#: about/templates/about.html:110
+msgid "Email"
+msgstr ""
+
+#: contact/templates/contact.html:6 home/templates/base.html:67
+#: home/templates/base.html:93
+msgid "Contact"
+msgstr ""
+
+#: contact/templates/contact.html:24
+msgid "Contact Image"
+msgstr ""
+
+#: contact/templates/contact.html:32
+msgid "Full Name..."
+msgstr ""
+
+#: contact/templates/contact.html:35
+msgid "Email..."
+msgstr ""
+
+#: contact/templates/contact.html:38
+msgid "Your Message..."
+msgstr ""
+
+#: contact/templates/contact.html:45
+msgid "Your message has been sent!"
+msgstr ""
+
+#: contact/templates/contact.html:48
+msgid "Send Message"
+msgstr ""
+
+#: grooming/templates/grooming.html:6 home/templates/base.html:61
+#: home/templates/base.html:107
+msgid "Grooming"
+msgstr ""
+
+#: grooming/templates/grooming.html:26 grooming/templates/grooming.html:97
+#: meals/templates/meals.html:26 meals/templates/meals.html:97
+#: training/templates/training.html:26 training/templates/training.html:86
+#: transportation/templates/transportation.html:26
+#: water_sports/templates/water_sports.html:26
+#: water_sports/templates/water_sports.html:86
+msgid "Book Now"
+msgstr ""
+
+#: grooming/templates/grooming.html:36 grooming/templates/grooming.html:42
+#: hotel/templates/services.html:91
+msgid "Our Grooming"
+msgstr ""
+
+#: grooming/templates/grooming.html:78 meals/templates/meals.html:78
+msgid "No pricing available for this service."
+msgstr ""
+
+#: grooming/templates/grooming.html:86
+msgid "No grooming services found."
+msgstr ""
+
+#: home/templates/base.html:52 home/templates/home.html:7
+msgid "Home"
+msgstr ""
+
+#: home/templates/base.html:55 home/templates/base.html:102
+msgid "Services"
+msgstr ""
+
+#: home/templates/base.html:58 home/templates/base.html:104
+msgid "Hotel"
+msgstr ""
+
+#: home/templates/base.html:59 home/templates/base.html:105
+#: meals/templates/meals.html:6
+msgid "Meals"
+msgstr ""
+
+#: home/templates/base.html:60
+msgid "Pet Training"
+msgstr ""
+
+#: home/templates/base.html:62 home/templates/base.html:108
+msgid "WaterSports"
+msgstr ""
+
+#: home/templates/base.html:63 home/templates/base.html:109
+#: transportation/templates/transportation.html:6
+msgid "Transportation"
+msgstr ""
+
+#: home/templates/base.html:66
+msgid "About"
+msgstr ""
+
+#: home/templates/base.html:91
+msgid "Company"
+msgstr ""
+
+#: home/templates/base.html:95
+msgid "Privacy Policy"
+msgstr ""
+
+#: home/templates/base.html:96
+msgid "Terms of Service"
+msgstr ""
+
+#: home/templates/base.html:106 training/templates/training.html:6
+msgid "Training"
+msgstr ""
+
+#: home/templates/base.html:115
+msgid "Location"
+msgstr ""
+
+#: home/templates/home.html:28 hotel/templates/hotel.html:30
+msgid "Book Your Pets Stay"
+msgstr ""
+
+#: home/templates/home.html:42 home/templates/home.html:75
+#: home/templates/home.html:88 home/templates/home.html:101
+#: home/templates/home.html:116 home/templates/home.html:129
+#: home/templates/home.html:142 hotel/templates/services.html:40
+#: hotel/templates/services.html:62 hotel/templates/services.html:76
+#: hotel/templates/services.html:99 hotel/templates/services.html:114
+#: hotel/templates/services.html:137
+msgid "Learn More"
+msgstr ""
+
+#: home/templates/home.html:46
+msgid "Pet Hotel Image"
+msgstr ""
+
+#: home/templates/home.html:55
+msgid "Our Promise"
+msgstr ""
+
+#: home/templates/home.html:64 hotel/templates/hotel.html:64
+#: hotel/templates/services.html:6
+msgid "Our Services"
+msgstr ""
+
+#: home/templates/home.html:155
+msgid "Your browser does not support the video tag."
+msgstr ""
+
+#: home/templates/home.html:162
+msgid "Our Location"
+msgstr ""
+
+#: home/templates/home.html:167
+msgid "Visit Us At:"
+msgstr ""
+
+#: home/templates/home.html:170
+msgid "Phone:"
+msgstr ""
+
+#: home/templates/home.html:171
+msgid "Email:"
+msgstr ""
+
+#: home/templates/privacy_policy.html:6 home/templates/privacy_policy.html:16
+msgid "privacy policy"
+msgstr ""
+
+#: home/templates/terms_of_service.html:6
+#: home/templates/terms_of_service.html:16
+msgid "Terms Of Service"
+msgstr ""
+
+#: hotel/templates/hotel.html:6
+msgid "Hotel Page"
+msgstr ""
+
+#: hotel/templates/hotel.html:42 hotel/templates/hotel.html:48
+msgid "Our Facilities"
+msgstr ""
+
+#: hotel/templates/hotel.html:60
+msgid "Our Service"
+msgstr ""
+
+#: hotel/templates/hotel.html:67
+msgid "View All Services"
+msgstr ""
+
+#: hotel/templates/hotel.html:76
+msgid "Rates"
+msgstr ""
+
+#: hotel/templates/hotel.html:93
+msgid "Includes"
+msgstr ""
+
+#: hotel/templates/hotel.html:93 hotel/templates/hotel.html:112
+#, python-format
+msgid "%%"
+msgstr ""
+
+#: hotel/templates/hotel.html:93
+msgid "discount"
+msgstr ""
+
+#: hotel/templates/hotel.html:97
+msgid "Per night"
+msgstr ""
+
+#: hotel/templates/hotel.html:104
+msgid "No room prices available at the moment."
+msgstr ""
+
+#: hotel/templates/hotel.html:112
+msgid "Get an additional"
+msgstr ""
+
+#: hotel/templates/hotel.html:112
+msgid "off for each extra pet in the same booking!"
+msgstr ""
+
+#: hotel/templates/hotel.html:119
+msgid "Reserve Your Room"
+msgstr ""
+
+#: hotel/templates/services.html:37 hotel/templates/services.html:43
+msgid "Our Hotel"
+msgstr ""
+
+#: hotel/templates/services.html:55
+msgid "Our Meal"
+msgstr ""
+
+#: hotel/templates/services.html:59
+msgid "Our Meal Service"
+msgstr ""
+
+#: hotel/templates/services.html:73
+msgid "Our Training Service"
+msgstr ""
+
+#: hotel/templates/services.html:79 training/templates/training.html:36
+#: training/templates/training.html:42
+msgid "Our Training"
+msgstr ""
+
+#: hotel/templates/services.html:95
+msgid "Our Grooming Service"
+msgstr ""
+
+#: hotel/templates/services.html:110
+msgid "Our WaterSports Service"
+msgstr ""
+
+#: hotel/templates/services.html:117
+msgid "Our WaterSports"
+msgstr ""
+
+#: hotel/templates/services.html:129
+msgid "Our Transportation"
+msgstr ""
+
+#: hotel/templates/services.html:133
+msgid "Our Transportation Service"
+msgstr ""
+
+#: meals/templates/meals.html:36 meals/templates/meals.html:42
+msgid "Our Meals"
+msgstr ""
+
+#: meals/templates/meals.html:86
+msgid "No meal services found."
+msgstr ""
+
+#: training/templates/training.html:66
+#: water_sports/templates/water_sports.html:66
+msgid "Duration"
+msgstr ""
+
+#: training/templates/training.html:66
+#: water_sports/templates/water_sports.html:66
+msgid "hrs"
+msgstr ""
+
+#: training/templates/training.html:74
+msgid "No training services available at the moment."
+msgstr ""
+
+#: transportation/templates/transportation.html:35
+msgid "Reliable Pet Transport"
+msgstr ""
+
+#: transportation/templates/transportation.html:40
+msgid "Transportation Image"
+msgstr ""
+
+#: transportation/templates/transportation.html:50
+msgid "Transportation Pricing"
+msgstr ""
+
+#: transportation/templates/transportation.html:51
+msgid "Simple, transparent rates for your pet's travel"
+msgstr ""
+
+#: transportation/templates/transportation.html:59
+msgid "Base Price"
+msgstr ""
+
+#: transportation/templates/transportation.html:61
+msgid "Fee Per Mile"
+msgstr ""
+
+#: transportation/templates/transportation.html:69
+msgid "Transportation pricing is currently unavailable."
+msgstr ""
+
+#: transportation/templates/transportation.html:80
+msgid "Arrange Transport"
+msgstr ""
+
+#: water_sports/templates/water_sports.html:6
+msgid "Watersports"
+msgstr ""
+
+#: water_sports/templates/water_sports.html:36
+#: water_sports/templates/water_sports.html:42
+msgid "Our Watersports"
+msgstr ""
+
+#: water_sports/templates/water_sports.html:74
+msgid "No watersport services available at the moment."
+msgstr ""

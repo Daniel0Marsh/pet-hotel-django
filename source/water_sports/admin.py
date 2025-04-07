@@ -1,15 +1,8 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from parler.admin import TranslatableAdmin
 from .models import Service, WaterSportsPage
-
-
-@admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("title", "duration", "price")
-    search_fields = ("title",)
-    list_editable = ("duration", "price")
-    list_display_links = ("title",)
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -33,6 +26,13 @@ class SingletonAdmin(admin.ModelAdmin):
         return super().changelist_view(request, extra_context)
 
 
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ("title", "duration", "price")
+    search_fields = ("title",)
+    list_editable = ("price", "duration")
+    list_display_links = ("title",)
+
 @admin.register(WaterSportsPage)
-class WaterSportsPageAdmin(SingletonAdmin):
+class WaterSportsPageAdmin(SingletonAdmin, TranslatableAdmin):
     pass

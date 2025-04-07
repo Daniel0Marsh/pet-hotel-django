@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} CodeBlock - Terms Of Service {% endblock %}</title>
+    <title>{% block title %}CodeBlock - {% trans "Terms Of Service" %}{% endblock %}</title>
 
     {% load static %}
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
@@ -13,7 +13,7 @@
 
 {% block content %}
     <div class="container min-vh-100 mb-5" style="margin-top: 100px">
-        <h1 class="display-3 display-sm-1 fw-bold text-center text-shadow-lg text-dark mb-5">Terms Of Service</h1>
+        <h1 class="display-3 display-sm-1 fw-bold text-center text-shadow-lg text-dark mb-5">{% trans "Terms Of Service" %}</h1>
         <div class="row justify-content-center">
             <div class="card bg-transparent border-0">
                 <div class="card-body">

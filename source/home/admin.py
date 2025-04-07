@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from parler.admin import TranslatableAdmin
 from .models import HomePage, PrivacyPolicyPage, TermsOfServicePage
 
 
@@ -24,7 +24,10 @@ class SingletonAdmin(admin.ModelAdmin):
 
 
 @admin.register(HomePage)
-class HomePageAdmin(SingletonAdmin):
+class HomePageAdmin(SingletonAdmin, TranslatableAdmin):
+    """
+    Admin for HomePage model that integrates Parler for translations.
+    """
     fieldsets = (
         ("Media", {
             "fields": ("video", "hero_image", "about_image", "location_image"),
@@ -45,10 +48,16 @@ class HomePageAdmin(SingletonAdmin):
 
 
 @admin.register(PrivacyPolicyPage)
-class PrivacyPolicyAdmin(SingletonAdmin):
+class PrivacyPolicyAdmin(SingletonAdmin, TranslatableAdmin):
+    """
+    Admin for PrivacyPolicyPage model that integrates Parler for translations.
+    """
     fields = ("content",)
 
 
 @admin.register(TermsOfServicePage)
-class TermsOfServiceAdmin(SingletonAdmin):
+class TermsOfServiceAdmin(SingletonAdmin, TranslatableAdmin):
+    """
+    Admin for TermsOfServicePage model that integrates Parler for translations.
+    """
     fields = ("content",)

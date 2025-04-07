@@ -1,11 +1,15 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from parler.admin import TranslatableAdmin
 from .models import Service, AnimalSize, GroomingPage
 
 
 @admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
+class ServiceAdmin(TranslatableAdmin, admin.ModelAdmin):
+    """
+    Admin for Service model that integrates Parler for translations.
+    """
     list_display = ("title",)
     search_fields = ("title",)
 
@@ -41,5 +45,9 @@ class SingletonAdmin(admin.ModelAdmin):
 
 
 @admin.register(GroomingPage)
-class MealsPageAdmin(SingletonAdmin):
+class GroomingPageAdmin(SingletonAdmin, TranslatableAdmin):
+    """
+    Admin for GroomingPage that integrates Parler for translations.
+    Inherits SingletonAdmin to ensure only one instance exists.
+    """
     pass

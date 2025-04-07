@@ -13,6 +13,7 @@ django-ckeditors = "^2025.1.14.2"
 django-ckeditor-5 = "^0.2.17"
 captcha = "^0.7.1"
 requests = "^2.32.3"
+django-parler = "^2.3"
 
 
 [build-system]

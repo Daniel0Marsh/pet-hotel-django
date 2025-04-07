@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from parler.admin import TranslatableAdmin
 from .models import AboutPage
 
 
@@ -26,5 +27,9 @@ class SingletonAdmin(admin.ModelAdmin):
 
 
 @admin.register(AboutPage)
-class AboutPageAdmin(SingletonAdmin):
+class AboutPageAdmin(SingletonAdmin, TranslatableAdmin):
+    """
+    Admin for AboutPage that integrates Parler for translations.
+    Inherits SingletonAdmin to ensure only one instance exists.
+    """
     pass

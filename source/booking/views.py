@@ -18,11 +18,19 @@ from grooming.models import AnimalSize as GroomingAnimalSize
 from meals.models import Service as MealService
 from meals.models import AnimalSize as MealAnimalSize
 from transportation.models import Service as Transportation
+from branding.models import Branding
 from django.db.models import Sum
 
 
 class SelectDatesView(TemplateView):
     template_name = 'select_dates.html'
+
+    def get_context_data(self, **kwargs):
+        """Pass available rooms count, room prices, and total days to the template."""
+        context = super().get_context_data(**kwargs)
+        context["branding"] = Branding.objecjs.first()
+
+        return context
 
     def post(self, request, *args, **kwargs):
         """Handle actions such as saving dates."""
@@ -81,6 +89,7 @@ class SelectRoomView(TemplateView):
         context["available_rooms"] = self.check_availability(self.request)
         context["total_days"] = self.request.session.get("total_days")
         context["room_prices"] = RoomPrice.objects.all()
+        context["branding"] = Branding.objecjs.first()
 
         discount = Discount.objects.first()  # Adjust based on your requirements (e.g., filtering by active status)
 
@@ -148,8 +157,11 @@ class MoreDetailsView(TemplateView):
     template_name = "more_details.html"
 
     def get_context_data(self, **kwargs):
-        """Return an empty context."""
-        return {}
+        """Pass available rooms count, room prices, and total days to the template."""
+        context = super().get_context_data(**kwargs)
+        context["branding"] = Branding.objecjs.first()
+
+        return context
 
     def post(self, request, *args, **kwargs):
         """Handle actions such as saving details."""
@@ -193,6 +205,7 @@ class SelectMealsView(TemplateView):
         # Get pet details from session
         pet_details = self.request.session.get("pet_details", [])
         context["meal_services"] = meal_services
+        context["branding"] = Branding.objecjs.first()
 
         # Loop through each meal service and calculate its price
         for service in meal_services:
@@ -241,9 +254,8 @@ class SelectTransportationView(TemplateView):
     def get_context_data(self, **kwargs):
         """Pass transportation data to the template."""
         context = super().get_context_data(**kwargs)
-        # Assuming you want to pass the first transportation object or handle it otherwise
-        transportation = Transportation.objects.first()  # Adjust to handle multiple or specific transportation
-        context['transportation'] = transportation
+        context['transportation'] = Transportation.objects.first()
+        context["branding"] = Branding.objecjs.first()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -294,6 +306,7 @@ class SelectGroomingView(TemplateView):
         # Get pet details from session
         pet_details = self.request.session.get("pet_details", [])
         context["grooming_services"] = grooming_services
+        context["branding"] = Branding.objecjs.first()
 
         # Loop through each grooming service and calculate its price
         for service in grooming_services:
@@ -351,6 +364,7 @@ class SelectTrainingView(TemplateView):
         """Pass all training services to the template."""
         context = super().get_context_data(**kwargs)
         context["training_services"] = TrainingService.objects.all()
+        context["branding"] = Branding.objecjs.first()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -391,6 +405,7 @@ class SelectWaterSportsView(TemplateView):
         """Pass all water sports services to the template."""
         context = super().get_context_data(**kwargs)
         context["water_sports_services"] = WaterService.objects.all()
+        context["branding"] = Branding.objecjs.first()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -424,6 +439,7 @@ class ConfirmBookingView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["branding"] = Branding.objecjs.first()
 
         session_data = {key: self.request.session.get(key) for key in [
             "check_in", "check_out", "total_days", "pet_details", "full_name",
@@ -676,6 +692,7 @@ class BookingCompleteView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context["email"] = self.request.session.get("email")
+        context["branding"] = Branding.objecjs.first()
 
         # clear the session
         self.request.session.flush()
@@ -688,6 +705,7 @@ class CancelBooking(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["branding"] = Branding.objecjs.first()
 
         # Retrieve the booking by ID
         booking_id = self.kwargs.get("booking_id")

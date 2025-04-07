@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'parler',
     'django_ckeditor_5',
     'captcha',
     'errors',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -142,13 +144,41 @@ CKEDITOR_5_CONFIGS = {
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en', 'name': 'English'},
+        {'code': 'th', 'name': 'Thai'},
+        {'code': 'zh', 'name': 'Chinese'},
+        {'code': 'km', 'name': 'Khmer'},
+        {'code': 'ru', 'name': 'Russian'},
+        # Add other languages as needed
+    ),
+    'default': {
+        'fallbacks': ['en'],  # Language fallbacks (optional)
+        'hide_untranslated': False,
+    }
+}
+
+# set languages
+LANGUAGES = [
+    ('en', 'English'),
+    ('th', 'Thai'),
+    ('zh', 'Chinese'),
+    ('km', 'Khmer'),
+    ('ru', 'Russian'),
+    # Add other languages as needed
+]
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+USE_L10N = True
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 # Static & Media Files
 STATIC_URL = '/static/'

@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from parler.admin import TranslatableAdmin
 from .models import Service, TransportationPage
+
 
 class SingletonAdmin(admin.ModelAdmin):
     """

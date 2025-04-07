@@ -1,12 +1,20 @@
 from django.db import models
+from parler.models import TranslatableModel, TranslatedFields
 
-
-class Service(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+class Service(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255),
+        description=models.TextField(),
+    )
 
     def __str__(self):
-        return self.title
+        # Fetch the title in the current active language
+        return self.safe_translation_getter('title', default='No title available')
+
+    class Meta:
+        verbose_name = "Services"
+        verbose_name_plural = "Services"
+
 
     class Meta:
         verbose_name = "Services"
@@ -31,33 +39,33 @@ class AnimalSize(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return f'{self.get_animal_display()} - {self.get_size_display()} - {self.service.name}'
+        return f'{self.get_animal_display()} - {self.get_size_display()} - {self.service.title}'
 
     class Meta:
         verbose_name = "Prices"
         verbose_name_plural = "Prices"
 
 
-class GroomingPage(models.Model):
+class GroomingPage(TranslatableModel):
     DEFAULT_IMAGE = 'default/placeholder.jpg'
 
-    hero_title = models.CharField(max_length=100, default="Professional Pet Grooming Services")
-    hero_subheading = models.CharField(max_length=255, default="Keep your furry friend looking and feeling their best with our expert grooming care.")
-    hero_image = models.ImageField(upload_to='grooming/', blank=True, null=True, default=DEFAULT_IMAGE)
+    translations = TranslatedFields(
+        hero_title=models.CharField(max_length=100, default="Professional Pet Grooming Services"),
+        hero_subheading=models.CharField(max_length=255, default="Keep your furry friend looking and feeling their best with our expert grooming care."),
+        our_grooming_title=models.CharField(max_length=100, default="Tailored Grooming for Every Pet"),
+        our_grooming_subheading=models.TextField(default="We provide breed-specific grooming, coat care, and spa treatments designed to suit your pet’s individual needs."),
+        grooming_info_title=models.CharField(max_length=100, default="Grooming Packages & Pricing"),
+        grooming_info_description=models.TextField(default="Choose from full-service grooms, quick clean-ups, or luxury spa packages. Pricing depends on pet size, coat type, and selected services."),
+        cta_title=models.CharField(max_length=100, default="Time for a Fresh Look?"),
+        cta_subheading=models.TextField(default="Schedule your pet’s grooming session today and give them the pampering they deserve."),
+    )
 
-    our_grooming_title = models.CharField(max_length=100, default="Tailored Grooming for Every Pet")
-    our_grooming_subheading = models.TextField(default="We provide breed-specific grooming, coat care, and spa treatments designed to suit your pet’s individual needs.")
+    hero_image = models.ImageField(upload_to='grooming/', blank=True, null=True, default=DEFAULT_IMAGE)
     our_grooming_image = models.ImageField(upload_to='grooming/', blank=True, null=True, default=DEFAULT_IMAGE)
 
-    grooming_info_title = models.CharField(max_length=100, default="Grooming Packages & Pricing")
-    grooming_info_description = models.TextField(default="Choose from full-service grooms, quick clean-ups, or luxury spa packages. Pricing depends on pet size, coat type, and selected services.")
-
-    cta_title = models.CharField(max_length=100, default="Time for a Fresh Look?")
-    cta_subheading = models.TextField(default="Schedule your pet’s grooming session today and give them the pampering they deserve.")
+    def __str__(self):
+        return "Grooming Page Content"
 
     class Meta:
         verbose_name = "Grooming Page Content"
         verbose_name_plural = "Grooming Page Content"
-
-    def __str__(self):
-        return "Grooming Page Content"
