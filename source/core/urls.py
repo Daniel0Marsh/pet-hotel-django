@@ -2,7 +2,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from branding.models import Branding
 
+try:
+    branding = Branding.objects.first()  # or get(id=1), if there's only one
+    company_name = branding.company_name if branding else "Not Available"
+except:
+    company_name = "Not Available"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +32,6 @@ if settings.DEBUG:
 
 
 # configure admin titles
-admin.site.site_header = "welcome to (Company name here) Admin"
-admin.site.site_title = "Company name here"
+admin.site.site_header = f"welcome to {company_name} Admin"
+admin.site.site_title = f"{company_name}"
 admin.site.index_title = "Welcome to the admin area"

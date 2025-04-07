@@ -36,3 +36,28 @@ class AnimalSize(models.Model):
     class Meta:
         verbose_name = "Prices"
         verbose_name_plural = "Prices"
+
+
+class GroomingPage(models.Model):
+    DEFAULT_IMAGE = 'default/placeholder.jpg'
+
+    hero_title = models.CharField(max_length=100, default="Professional Pet Grooming Services")
+    hero_subheading = models.CharField(max_length=255, default="Keep your furry friend looking and feeling their best with our expert grooming care.")
+    hero_image = models.ImageField(upload_to='grooming/', blank=True, null=True, default=DEFAULT_IMAGE)
+
+    our_grooming_title = models.CharField(max_length=100, default="Tailored Grooming for Every Pet")
+    our_grooming_subheading = models.TextField(default="We provide breed-specific grooming, coat care, and spa treatments designed to suit your pet’s individual needs.")
+    our_grooming_image = models.ImageField(upload_to='grooming/', blank=True, null=True, default=DEFAULT_IMAGE)
+
+    grooming_info_title = models.CharField(max_length=100, default="Grooming Packages & Pricing")
+    grooming_info_description = models.TextField(default="Choose from full-service grooms, quick clean-ups, or luxury spa packages. Pricing depends on pet size, coat type, and selected services.")
+
+    cta_title = models.CharField(max_length=100, default="Time for a Fresh Look?")
+    cta_subheading = models.TextField(default="Schedule your pet’s grooming session today and give them the pampering they deserve.")
+
+    class Meta:
+        verbose_name = "Grooming Page Content"
+        verbose_name_plural = "Grooming Page Content"
+
+    def __str__(self):
+        return "Grooming Page Content"

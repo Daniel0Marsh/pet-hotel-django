@@ -17,7 +17,7 @@ from grooming.models import Service as GroomingService
 from grooming.models import AnimalSize as GroomingAnimalSize
 from meals.models import Service as MealService
 from meals.models import AnimalSize as MealAnimalSize
-from transportation.models import Transportation
+from transportation.models import Service as Transportation
 from django.db.models import Sum
 
 

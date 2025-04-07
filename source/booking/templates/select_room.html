@@ -20,7 +20,7 @@
 {% block content %}
 
 <body class="bg-light">
-    <header class="bg-primary text-white text-center py-4">
+    <header class="text-white text-center py-4" style="background-color: #2874a6">
         <h1 class="fw-bold"><i class="bi bi-house-heart-fill"></i> Your Pet’s Home Away from Home</h1>
         <p class="lead">A cozy place for your furry friends! 🐶🐱</p>
     </header>
@@ -71,7 +71,7 @@
 
     <form method="POST" id="booking-form">
         {% csrf_token %}
-        <div class="container mt-4">
+        <div class="container my-4">
             <div class="card shadow-lg border-0">
                 <div class="card-body">
                     <h4 class="text-center text-secondary fw-bold"><i class="bi bi-calendar-check"></i> Book Your Pet's Stay</h4>

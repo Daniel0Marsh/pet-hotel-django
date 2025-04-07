@@ -22,7 +22,7 @@
              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
         <div class="container text-center" style="position: relative; z-index: 2;">
             <h1 class="display-3 fw-bold my-5">{{ meals.hero_title }}</h1>
-            <p class="lead mb-5">{{ meals.hero_subheading }}</p>
+            <h4 class="mb-5">{{ meals.hero_subheading }}</h4>
             <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg">Book Now</a>
         </div>
     </section>
@@ -91,11 +91,11 @@
 
 
     <!-- CTA Section -->
-    <section class="py-5 text-center text-white" style="background-color: #e9a48e;">
+    <section class="py-5 text-center text-white" style="background-color: #2874a6;">
         <div class="container">
             <h2 class="fw-bold mb-4">{{meals.cta_title}}</h2>
             <p class="lead mb-4">{{meals.cta_subheading}}</p>
-            <a href="{% url 'select_dates' %}" class="btn btn-primary btn-lg px-5">Book Today</a>
+            <a href="{% url 'select_dates' %}" class="btn btn-light btn-lg px-5">Book Now</a>
         </div>
     </section>
 
