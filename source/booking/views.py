@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -433,6 +433,8 @@ class SelectWaterSportsView(TemplateView):
 class ConfirmBookingView(TemplateView):
     template_name = 'confirm_booking.html'
 
+    from decimal import Decimal, ROUND_HALF_UP
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["branding"] = Branding.objects.first()
@@ -444,20 +446,21 @@ class ConfirmBookingView(TemplateView):
             "selected_training_service", "selected_water_sports_service"
         ]}
 
+        def round_decimal(value):
+            return Decimal(value).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+
         prices = {
-            "room": 0, "meal": 0, "grooming": 0, "training": 0, "water_sports": 0
+            "room": Decimal(0), "meal": Decimal(0), "grooming": Decimal(0),
+            "training": Decimal(0), "water_sports": Decimal(0)
         }
 
-        # Calculate prices based on pets and selected services
         for pet in session_data["pet_details"]:
             pet_type, pet_size = pet['type'].lower(), pet['size'].lower()
 
-            # Room price
             room_price = get_object_or_404(RoomPrice, pet_type=pet_type, pet_size=pet_size)
-            pet['room_price'] = room_price.price
+            pet['room_price'] = round_decimal(room_price.price)
             prices["room"] += room_price.price * session_data["total_days"]
 
-            # Service prices
             for service_key, service_model, price_key in [
                 ("selected_meal_service", MealService, "meal"),
                 ("selected_grooming_service", GroomingService, "grooming"),
@@ -472,47 +475,35 @@ class ConfirmBookingView(TemplateView):
                         meal_price = get_object_or_404(MealAnimalSize, animal=pet_type, size=pet_size,
                                                        service=service).price
                         prices[price_key] += meal_price * session_data["total_days"]
-
                     elif price_key == "grooming":
                         grooming_price = get_object_or_404(GroomingAnimalSize, animal=pet_type, size=pet_size,
                                                            service=service).price
                         prices[price_key] += grooming_price
-
                     else:
-                        # Training and Water Sports
                         prices[price_key] += service.price
 
-        # Calculate total price before discount
-        total_price = sum(Decimal(price) for price in prices.values())
+        total_price = sum(prices.values())
 
-        # Fetch the active discount
-        discount = Discount.objects.first()  # Assuming one global discount
+        discount = Discount.objects.first()
         multipet_discount_value = Decimal(0)
         overall_discount_value = Decimal(0)
 
         if discount:
-            # Apply multipet discount if more than one pet is booked
             if len(session_data["pet_details"]) > 1:
                 multipet_discount_value = total_price * (discount.multipet_discount / 100)
-
-            # Apply overall discount
             overall_discount_value = total_price * (discount.overall_discount / 100)
 
-        # Total discount applied
         total_discount_value = multipet_discount_value + overall_discount_value
-
-        # Ensure total_discount_value is 0 if no discounts were applied
-        if total_discount_value == 0:
-            total_discount_value = Decimal(0)
-
-        # Final price after discount
         final_price = total_price - total_discount_value
 
-        # Ensure total_discount_value is 0 if None
-        if total_discount_value is None:
-            total_discount_value = Decimal(0)
+        # Round all prices and discounts to two decimal places
+        prices = {k: round_decimal(v) for k, v in prices.items()}
+        total_price = round_decimal(total_price)
+        multipet_discount_value = round_decimal(multipet_discount_value)
+        overall_discount_value = round_decimal(overall_discount_value)
+        total_discount_value = round_decimal(total_discount_value)
+        final_price = round_decimal(final_price)
 
-        # Update the context with the values
         context.update({
             **session_data,
             **prices,
@@ -542,6 +533,9 @@ class ConfirmBookingView(TemplateView):
             "selected_meal_service", "selected_grooming_service",
             "selected_training_service", "selected_water_sports_service", "total_days"
         ]}
+
+        def round_decimal(value):
+            return Decimal(value).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
         # Calculate the total price (same as in your existing method)
         prices = {
@@ -584,7 +578,7 @@ class ConfirmBookingView(TemplateView):
         total_price = sum(Decimal(price) for price in prices.values())
 
         # Fetch the active discount
-        discount = Discount.objects.first()  # Assuming one discount applies globally
+        discount = Discount.objects.first()
         multipet_discount_value = Decimal(0)
         overall_discount_value = Decimal(0)
 
@@ -601,6 +595,9 @@ class ConfirmBookingView(TemplateView):
 
         # Final price after discount
         final_price = total_price - total_discount_value
+
+        # Round all prices and discounts to two decimal places
+        final_price = round_decimal(final_price)
 
         # Convert pet details into a readable text format
         pet_details_text = "\n".join([
@@ -721,7 +718,7 @@ class CancelBooking(TemplateView):
 
         # Retrieve the booking by ID
         booking_id = self.kwargs.get("booking_id")
-        booking = get_object_or_404(Booking, booking_id=booking_id)
+        booking = get_object_or_404(Booking, id=booking_id)
 
         # Delete the booking
         booking.delete()

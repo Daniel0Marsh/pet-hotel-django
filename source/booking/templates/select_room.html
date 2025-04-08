@@ -29,7 +29,7 @@
         <div class="row">
             <!-- Pricing Section -->
             <div class="col-md-6">
-                <div class="card shadow-lg border-0">
+                <div class="card shadow-lg border-0 mb-4">
                     <div class="card-body">
                         <h4 class="text-center text-secondary fw-bold"><i class="bi bi-cash-stack"></i> Pricing Details</h4>
                         <ul class="list-unstyled">
@@ -57,7 +57,7 @@
 
             <!-- Available Rooms Section -->
             <div class="col-md-6">
-                <div class="card shadow-lg border-0">
+                <div class="card shadow-lg border-0 mb-4">
                     <div class="card-body">
                         <h4 class="card-title text-center text-primary fw-bold">
                             <span id="available-rooms">{{ available_rooms }}</span> Rooms Available
@@ -71,7 +71,7 @@
 
     <form method="POST" id="booking-form">
         {% csrf_token %}
-        <div class="container my-4">
+        <div class="container mb-4">
             <div class="card shadow-lg border-0">
                 <div class="card-body">
                     <h4 class="text-center text-secondary fw-bold"><i class="bi bi-calendar-check"></i> Book Your Pet's Stay</h4>

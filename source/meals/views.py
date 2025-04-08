@@ -13,11 +13,9 @@ class MealView(TemplateView):
         """
         context = super().get_context_data(**kwargs)
 
-
         context = {
             "branding": Branding.objects.first(),
             "service": Service.objects.all(),
             "meals": MealsPage.objects.first(),
         }
-
         return context

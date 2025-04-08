@@ -13,11 +13,9 @@ class TrainingView(TemplateView):
         """
         context = super().get_context_data(**kwargs)
 
-
         context = {
             "branding": Branding.objects.first(),
             "service": Service.objects.all(),
             "training": TrainingPage.objects.first(),
         }
-
         return context

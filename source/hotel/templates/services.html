@@ -37,7 +37,7 @@
                     <h6>{% trans "Our Hotel" %}</h6>
                     <h2 class="display-6 font-weight-bold mb-4">{{ service.our_hotel_title }}</h2>
                     <p class="lead mb-4">{{ service.our_hotel_subheading }}</p>
-                    <a href="{% url 'hotel' %}" class="btn btn-light">{% trans "Learn More" %}</a>
+                    <a href="{% url 'hotel' %}" class="btn btn-light mb-4">{% trans "Learn More" %}</a>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ service.our_hotel_image.url }}" alt="{% trans 'Our Hotel' %}" class="img-fluid rounded w-100">
@@ -73,7 +73,7 @@
                     <h6>{% trans 'Our Training Service' %}</h6>
                     <h2 class="display-6 font-weight-bold mb-4">{{ service.our_training_title }}</h2>
                     <p class="lead mb-4">{{ service.our_training_subheading }}</p>
-                    <a href="{% url 'training' %}" class="btn btn-light">{% trans 'Learn More' %}</a>
+                    <a href="{% url 'training' %}" class="btn btn-light mb-4">{% trans 'Learn More' %}</a>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ service.our_training_image.url }}" alt="{% trans 'Our Training' %}" class="img-fluid rounded w-100">
@@ -111,7 +111,7 @@
                     <h2 class="display-6 font-weight-bold mb-4">{{ service.our_watersports_title }}</h2>
                     <p class="lead mb-4">{{ service.our_watersports_subheading }}</p>
                     <!-- Button -->
-                    <a href="{% url 'water_sports' %}" class="btn btn-light">{% trans 'Learn More' %}</a>
+                    <a href="{% url 'water_sports' %}" class="btn btn-light mb-4">{% trans 'Learn More' %}</a>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ service.our_watersports_image.url }}" alt="{% trans 'Our WaterSports' %}" class="img-fluid rounded w-100">

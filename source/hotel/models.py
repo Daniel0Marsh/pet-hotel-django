@@ -34,11 +34,11 @@ class HotelPage(TranslatableModel):
         verbose_name_plural = "Hotel Page Content"
 
 
-
 class ServicePage(TranslatableModel):
     DEFAULT_IMAGE = 'default/placeholder.jpg'
 
     # Non-translatable fields
+    hero_image = models.ImageField(upload_to='services/', blank=True, null=True, default=DEFAULT_IMAGE)
     our_hotel_image = models.ImageField(upload_to='services/', blank=True, null=True, default=DEFAULT_IMAGE)
     our_meal_image = models.ImageField(upload_to='services/', blank=True, null=True, default=DEFAULT_IMAGE)
     our_training_image = models.ImageField(upload_to='services/', blank=True, null=True, default=DEFAULT_IMAGE)
