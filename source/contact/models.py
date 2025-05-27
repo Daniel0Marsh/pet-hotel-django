@@ -1,6 +1,7 @@
 from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 
+
 class ContactPage(TranslatableModel):
     DEFAULT_IMAGE = 'default/placeholder.jpg'
 

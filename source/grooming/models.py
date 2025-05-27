@@ -1,6 +1,7 @@
 from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 
+
 class Service(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=255),

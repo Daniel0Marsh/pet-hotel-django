@@ -23,24 +23,41 @@ from django.db.models import Sum
 
 
 class SelectDatesView(TemplateView):
+    """
+    View for selecting booking dates (check-in and check-out).
+
+    - GET: Renders the date selection form with site branding.
+    - POST: Validates the selected dates and stores them in the session if valid.
+    """
     template_name = 'select_dates.html'
 
     def get_context_data(self, **kwargs):
-        """Pass available rooms count, room prices, and total days to the template."""
+        """
+        Adds branding information to the context.
+        """
         context = super().get_context_data(**kwargs)
         context["branding"] = Branding.objects.first()
 
         return context
 
     def post(self, request, *args, **kwargs):
-        """Handle actions such as saving dates."""
+        """
+        Handles form submission to save selected dates.
+        Delegates to `save_dates` method or returns 400 if action is invalid.
+        """
         action_map = {'save_dates': self.save_dates}
         action = next((key for key in action_map if key in request.POST), None)
         return action_map.get(action, self.invalid_action)(request)
 
     @staticmethod
     def save_dates(request):
-        """Save check-in and check-out dates after validation."""
+        """
+        Validates and stores the selected check-in and check-out dates in the session.
+
+        Returns:
+            - Redirects to room selection view on success.
+            - Renders the form with error messages if validation fails.
+        """
         check_in_date, check_out_date = request.POST.get('check_in_date'), request.POST.get('check_out_date')
 
         if not (check_in_date and check_out_date):
@@ -69,29 +86,42 @@ class SelectDatesView(TemplateView):
 
     @staticmethod
     def invalid_action(request):
-        """Handle invalid actions."""
+        """
+        Returns a 400 response for unrecognized POST actions.
+        """
         return HttpResponse("Invalid action", status=400)
 
 
 class SelectRoomView(TemplateView):
+    """
+    View for selecting rooms and entering pet details.
+
+    - GET: Verifies room availability based on selected dates.
+    - POST: Saves pet information to the session if valid.
+    """
     template_name = "select_room.html"
 
     def get(self, request, *args, **kwargs):
-        """Redirect to date selection if no rooms are available."""
+        """
+        Redirects back to date selection if no rooms are available.
+        Otherwise, renders the room selection form.
+        """
         if self.check_availability(request) == 0:
             messages.error(request, "No rooms available for the selected date range. Please choose different dates.")
             return redirect("select_dates")
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        """Pass available rooms count, room prices, and total days to the template."""
+        """
+        Adds available rooms, room pricing, discounts, and branding to the context.
+        """
         context = super().get_context_data(**kwargs)
         context["available_rooms"] = self.check_availability(self.request)
         context["total_days"] = self.request.session.get("total_days")
         context["room_prices"] = RoomPrice.objects.all()
         context["branding"] = Branding.objects.first()
 
-        discount = Discount.objects.first()  # Adjust based on your requirements (e.g., filtering by active status)
+        discount = Discount.objects.first()
 
         # Add discount values to the context if available
         if discount:
@@ -104,14 +134,22 @@ class SelectRoomView(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        """Handle actions such as selecting rooms."""
+        """
+        Handles form submission to save selected room and pet information.
+        Delegates to `save_rooms` or returns 400 if action is invalid.
+        """
         action_map = {'save_rooms': self.save_rooms}
         action = next((key for key in action_map if key in request.POST), None)
         return action_map.get(action, self.invalid_action)(request)
 
     @staticmethod
     def check_availability(request):
-        """Calculate the number of available rooms."""
+        """
+        Calculates number of available rooms based on current bookings and selected dates.
+
+        Returns:
+            int: Number of rooms still available.
+        """
         check_in = request.session.get("check_in")
         check_out = request.session.get("check_out")
         total_rooms = Room.objects.count()
@@ -122,7 +160,13 @@ class SelectRoomView(TemplateView):
 
     @staticmethod
     def save_rooms(request):
-        """Save pet details to session and ensure valid pet count."""
+        """
+        Validates pet information and stores it in the session.
+
+        Returns:
+            - Redirects to the next step if successful.
+            - Renders form again with error messages if invalid.
+        """
         pets = request.POST.getlist("pet_name[]")
         if not pets:
             messages.error(request, "You must add at least one pet to proceed!")
@@ -149,7 +193,9 @@ class SelectRoomView(TemplateView):
 
     @staticmethod
     def invalid_action(request):
-        """Handle invalid actions."""
+        """
+        Returns a 400 response for unrecognized POST actions.
+        """
         return HttpResponse("Invalid action", status=400)
 
 
