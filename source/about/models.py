@@ -7,7 +7,7 @@ class AboutPage(TranslatableModel):
     Model representing translatable content for the 'About' page.
 
     This model supports multiple languages using django-parler,
-    and includes section-specific titles, subheadings, and images.
+    and includes section-specific titles, subheadings, and media.
     """
 
     DEFAULT_IMAGE = 'default/placeholder.jpg'

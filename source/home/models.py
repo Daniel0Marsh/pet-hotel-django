@@ -19,7 +19,7 @@ class HomePage(TranslatableModel):
         default=DEFAULT_VIDEO
     )
 
-    # ImageFields for the homepage images
+    # ImageFields for the homepage media
     hero_image = models.ImageField(
         upload_to="home_page/",
         help_text="Upload the hero section background image.",
