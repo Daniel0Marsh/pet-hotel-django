@@ -51,9 +51,9 @@ Visit http://127.0.0.1:8000/ to use the system locally.
 
 ## 📸 Screenshots
 
-| Logo 1                      | Logo 2                      |
-|-----------------------------|-----------------------------|
-| ![Logo 1](media/logo_1.jpg) | ![Logo 2](media/logo_2.jpg) |
+| Homepage                                    | Booking                                   |
+|---------------------------------------------|-------------------------------------------|
+| ![Homepage](media/screenshots/homepage.png) | ![Booking](media/screenshots/booking.png) |
 
 ---
 
